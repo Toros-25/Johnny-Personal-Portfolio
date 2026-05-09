@@ -238,12 +238,11 @@ const CONTENT = {
   ],
 
   achievements: [
-    { category: "Hockey", name: "OHL Priority Selection — Top 300", desc: "Drafted top 300 of 11,000 players to Niagara IceDogs (OHL)", year: 2023 },
-    { category: "Hockey", name: "14th China National Winter Games", desc: "4th place finish; Tianjin Team MVP, $2,500 prize", year: 2024 },
-    { category: "Research", name: "2026 AAAS Annual Meeting", desc: "Selected for poster presentation — alpha-synuclein research", year: 2026 },
-    { category: "Research", name: "CCIR Student Symposium", desc: "Oral talk to Cambridge faculty and Nobel Laureate Thomas R. Cech", year: 2025 },
-    { category: "Science", name: "Canadian Chemistry Olympiad Special Merit Award", desc: "58th of ~700 contestants", year: "2024, 2025" },
-    { category: "Science", name: "Canadian Ethics Olympiad Regional Bronze Medal", desc: "3rd place, 60+ competing teams", year: 2023 },
+    { category: "Research", name: "2026 AAAS Annual Meeting E-Poster Presentation", desc: "Selected for poster presentation on Parkinson's disease protein aggregation research conducted at Brigham & Women's Hospital under Dr. Ulf Dettmer (Harvard Medical School)", year: 2026 },
+    { category: "Research", name: "CCIR Student Symposium Presentation", desc: "Delivered oral talk on α-synuclein disaggregation research to University of Cambridge faculty and Nobel Laureate Thomas R. Cech (Nobel Prize in Chemistry, 1989)", year: 2025 },
+    { category: "Science", name: "Canadian Chemistry Olympiad Special Merit Award", desc: "Ranked 58th nationally out of ~700 contestants across Canada in consecutive years (2024, 2025)", year: "2024, 2025" },
+    { category: "Hockey", name: "OHL Priority Selection — Top 300", desc: "Drafted top 300 of 11,000 players to the Ontario Hockey League (OHL), selected by the Niagara IceDogs", year: 2023 },
+    { category: "Hockey", name: "14th China National Winter Games", desc: "Represented Tianjin at China's premier national multi-sport winter competition featuring athletes from all 34 provinces and regions; 4th place finish; Tianjin Team MVP, $2,500 prize", year: 2024 },
   ],
 
   skills: {
@@ -308,10 +307,10 @@ function escapeHtml(str) {
 
 // ICON_PATHS — shared SVG path data used by renderHero and renderContact.
 const ICON_PATHS = {
-  github:       { label: 'GitHub',        path: 'M12 .5C5.65.5.5 5.66.5 12.02c0 5.08 3.29 9.39 7.86 10.91.58.1.79-.25.79-.56 0-.27-.01-1-.02-1.96-3.2.69-3.87-1.54-3.87-1.54-.52-1.32-1.27-1.67-1.27-1.67-1.04-.71.08-.7.08-.7 1.15.08 1.76 1.18 1.76 1.18 1.02 1.75 2.69 1.24 3.34.95.1-.74.4-1.24.72-1.53-2.55-.29-5.24-1.28-5.24-5.69 0-1.26.45-2.29 1.18-3.09-.12-.29-.51-1.46.11-3.05 0 0 .97-.31 3.18 1.18a11.07 11.07 0 015.79 0c2.21-1.49 3.18-1.18 3.18-1.18.62 1.59.23 2.76.11 3.05.74.8 1.18 1.83 1.18 3.09 0 4.42-2.69 5.4-5.25 5.69.41.36.78 1.06.78 2.13 0 1.54-.01 2.79-.01 3.17 0 .31.21.67.8.56C20.21 21.4 23.5 17.1 23.5 12.02 23.5 5.66 18.34.5 12 .5z' },
-  linkedin:     { label: 'LinkedIn',      path: 'M19 0h-14C2.24 0 0 2.24 0 5v14c0 2.76 2.24 5 5 5h14c2.76 0 5-2.24 5-5V5c0-2.76-2.24-5-5-5zM8 19H5V8h3v11zM6.5 6.73c-.97 0-1.75-.79-1.75-1.76 0-.97.78-1.76 1.75-1.76s1.75.79 1.75 1.76c0 .97-.78 1.76-1.75 1.76zM20 19h-3v-5.6c0-1.34-.03-3.07-1.87-3.07-1.87 0-2.16 1.46-2.16 2.97V19h-3V8h2.88v1.5h.04c.4-.76 1.38-1.56 2.84-1.56 3.04 0 3.6 2 3.6 4.6V19z' },
-  googleScholar:{ label: 'Google Scholar', path: 'M12 2L1 9l4 2.18v6L12 21l7-3.82v-6l2-1.09V17h2V9L12 2zm6.82 7L12 12.72 5.18 9 12 5.27 18.82 9zM17 15.99l-5 2.73-5-2.73v-3.72L12 15l5-2.73v3.72z' },
-  email:        { label: 'Email',         path: 'M20 4H4a2 2 0 00-2 2v12a2 2 0 002 2h16a2 2 0 002-2V6a2 2 0 00-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z' },
+  github: { label: 'GitHub', path: 'M12 .5C5.65.5.5 5.66.5 12.02c0 5.08 3.29 9.39 7.86 10.91.58.1.79-.25.79-.56 0-.27-.01-1-.02-1.96-3.2.69-3.87-1.54-3.87-1.54-.52-1.32-1.27-1.67-1.27-1.67-1.04-.71.08-.7.08-.7 1.15.08 1.76 1.18 1.76 1.18 1.02 1.75 2.69 1.24 3.34.95.1-.74.4-1.24.72-1.53-2.55-.29-5.24-1.28-5.24-5.69 0-1.26.45-2.29 1.18-3.09-.12-.29-.51-1.46.11-3.05 0 0 .97-.31 3.18 1.18a11.07 11.07 0 015.79 0c2.21-1.49 3.18-1.18 3.18-1.18.62 1.59.23 2.76.11 3.05.74.8 1.18 1.83 1.18 3.09 0 4.42-2.69 5.4-5.25 5.69.41.36.78 1.06.78 2.13 0 1.54-.01 2.79-.01 3.17 0 .31.21.67.8.56C20.21 21.4 23.5 17.1 23.5 12.02 23.5 5.66 18.34.5 12 .5z' },
+  linkedin: { label: 'LinkedIn', path: 'M19 0h-14C2.24 0 0 2.24 0 5v14c0 2.76 2.24 5 5 5h14c2.76 0 5-2.24 5-5V5c0-2.76-2.24-5-5-5zM8 19H5V8h3v11zM6.5 6.73c-.97 0-1.75-.79-1.75-1.76 0-.97.78-1.76 1.75-1.76s1.75.79 1.75 1.76c0 .97-.78 1.76-1.75 1.76zM20 19h-3v-5.6c0-1.34-.03-3.07-1.87-3.07-1.87 0-2.16 1.46-2.16 2.97V19h-3V8h2.88v1.5h.04c.4-.76 1.38-1.56 2.84-1.56 3.04 0 3.6 2 3.6 4.6V19z' },
+  googleScholar: { label: 'Google Scholar', path: 'M12 2L1 9l4 2.18v6L12 21l7-3.82v-6l2-1.09V17h2V9L12 2zm6.82 7L12 12.72 5.18 9 12 5.27 18.82 9zM17 15.99l-5 2.73-5-2.73v-3.72L12 15l5-2.73v3.72z' },
+  email: { label: 'Email', path: 'M20 4H4a2 2 0 00-2 2v12a2 2 0 002 2h16a2 2 0 002-2V6a2 2 0 00-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z' },
 };
 
 
