@@ -237,11 +237,14 @@ const CONTENT = {
     },
   ],
 
+  // To link a file to an achievement card, add:  attachment: "assets/filename.pdf"
+  // (also works with .jpg, .png, etc.). Drop the file in the assets/ folder first.
+  // Omit the field entirely if there is no attachment.
   achievements: [
-    { category: "Research", name: "2026 AAAS Annual Meeting E-Poster Presentation", desc: "Selected for poster presentation on Parkinson's disease protein aggregation research conducted at Brigham & Women's Hospital under Dr. Ulf Dettmer (Harvard Medical School)", year: 2026 },
-    { category: "Research", name: "CCIR Student Symposium Presentation", desc: "Delivered oral talk on α-synuclein disaggregation research to University of Cambridge faculty and Nobel Laureate Thomas R. Cech (Nobel Prize in Chemistry, 1989)", year: 2025 },
+    { category: "Research", name: "2026 AAAS Annual Meeting E-Poster Presentation", desc: "Selected for poster presentation on Parkinson's disease protein aggregation research conducted at Brigham & Women's Hospital under Dr. Ulf Dettmer (Harvard Medical School)", year: 2026, attachment: "assets/Eposter.pdf" },
+    { category: "Research", name: "CCIR Student Symposium Presentation", desc: "Delivered oral talk on α-synuclein disaggregation research to University of Cambridge faculty and Nobel Laureate Thomas R. Cech (Nobel Prize in Chemistry, 1989)", year: 2025, attachment: "assets/ccir_symposium_pres.pdf" },
     { category: "Science", name: "Canadian Chemistry Olympiad Special Merit Award", desc: "Ranked 58th nationally out of ~700 contestants across Canada in consecutive years (2024, 2025)", year: "2024, 2025" },
-    { category: "Hockey", name: "OHL Priority Selection — Top 300", desc: "Drafted top 300 of 11,000 players to the Ontario Hockey League (OHL), selected by the Niagara IceDogs", year: 2023 },
+    { category: "Hockey", name: "OHL Priority Selection — Top 300", desc: "Drafted top 300 of 11,000 players to the Ontario Hockey League (OHL), selected by the Niagara IceDogs", year: 2023, attachment: "https://www.eliteprospects.com/player/905968/johnny-li" },
     { category: "Hockey", name: "14th China National Winter Games", desc: "Represented Tianjin at China's premier national multi-sport winter competition featuring athletes from all 34 provinces and regions; 4th place finish; Tianjin Team MVP, $2,500 prize", year: 2024 },
   ],
 
@@ -256,7 +259,7 @@ const CONTENT = {
       libraries: ["NetworkX", "NumPy", "ggplot2", "dplyr"],
     },
 
-    lab: ["Western Blot", "Mass Spectrometry", "Cell Culture", "LC-MS (Liquid chromatography-mass spectrometry)", "Protein Extraction", "Calorimetry Detectors"],
+    lab: ["Western Blot", "Mass Spectrometry", "Cell Culture", "LC-MS (Liquid chromatography-mass spectrometry)", "Protein Extraction", "Calorimetry Detectors", "Gel Electrophoresis", "Assays", "Staining"],
 
     spoken: [
       { lang: "English", level: "Native", pct: 100 },
@@ -304,6 +307,11 @@ function escapeHtml(str) {
     '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;',
   }[c]));
 }
+// safeUrl — blocks javascript: scheme XSS in href attributes; everything else passes through.
+function safeUrl(url) {
+  const s = String(url || '').trim();
+  return /^javascript:/i.test(s) ? '#' : s;
+}
 
 // ICON_PATHS — shared SVG path data used by renderHero and renderContact.
 const ICON_PATHS = {
@@ -321,7 +329,7 @@ function renderHero() {
   const h = CONTENT.hero;
   $('#hero-name').textContent = h.name;
   $('#hero-tagline').textContent = h.tagline;
-  $('#hero-resume').href = h.resumePdf;
+  $('#hero-resume').href = safeUrl(h.resumePdf);
 
   // Social icon row — only renders links that have a non-empty value.
   const wrap = $('#hero-links');
@@ -331,7 +339,7 @@ function renderHero() {
     if (key === 'email') return; // email shown as text in the contact section, not as a hero icon
     const cfg = ICON_PATHS[key];
     if (!cfg) return;
-    const a = el('a', { href: val, 'aria-label': cfg.label, target: '_blank', rel: 'noopener noreferrer' });
+    const a = el('a', { href: safeUrl(val), 'aria-label': cfg.label, target: '_blank', rel: 'noopener noreferrer' });
     a.innerHTML = `<svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path fill="currentColor" d="${cfg.path}"/></svg>`;
     wrap.appendChild(a);
   });
@@ -350,6 +358,9 @@ function renderAbout() {
   if (h.profileImage) {
     const img = new Image();
     img.alt = h.name;
+    img.width = 160;
+    img.height = 160;
+    img.loading = 'eager';
     img.onload = () => { avatar.innerHTML = ''; avatar.appendChild(img); };
     img.onerror = () => { avatar.textContent = 'JL'; };
     img.src = h.profileImage;
@@ -377,14 +388,17 @@ function renderEducation() {
       .join('')
       .slice(0, 2);
 
+    const bodyId = `edu-body-${i}`;
     const card = el('article', { class: 'edu-card', 'data-aos': 'fade-up' });
     const courses = e.courses.map(c => `<li>${escapeHtml(c)}</li>`).join('');
+    const metaHtml = [e.degree, `${e.start} — ${e.end}`, e.location]
+      .filter(Boolean).map(escapeHtml).join(' · ');
     card.innerHTML = `
-      <button class="edu-toggle" type="button" aria-expanded="${isOpen}">
+      <button class="edu-toggle" type="button" aria-expanded="${isOpen}" aria-controls="${bodyId}">
         <span class="edu-logo"><span class="edu-logo-fallback">${escapeHtml(initials)}</span></span>
         <span class="edu-summary">
           <span class="edu-uni">${escapeHtml(e.university)}</span>
-          <span class="edu-meta">${escapeHtml(e.degree)} · ${escapeHtml(e.start)} — ${escapeHtml(e.end)} · ${escapeHtml(e.location)}</span>
+          <span class="edu-meta">${metaHtml}</span>
         </span>
         <span class="edu-gpa">
           <span class="edu-gpa-label">GPA</span>
@@ -392,7 +406,7 @@ function renderEducation() {
         </span>
         <span class="edu-chevron" aria-hidden="true">▾</span>
       </button>
-      <div class="edu-body${isOpen ? ' open' : ''}">
+      <div id="${bodyId}" class="edu-body${isOpen ? ' open' : ''}">
         <div class="edu-courses-title">// Relevant Courses</div>
         <ul class="edu-courses">${courses}</ul>
       </div>
@@ -402,6 +416,8 @@ function renderEducation() {
     if (e.logo) {
       const img = new Image();
       img.alt = e.university + ' logo';
+      img.width = 56;
+      img.height = 56;
       img.onload = () => {
         const slot = card.querySelector('.edu-logo');
         slot.innerHTML = '';
@@ -470,7 +486,7 @@ function renderPublications() {
     // Bold any "Li, J." occurrences in the author string so Johnny stands out.
     const authors = escapeHtml(p.authors).replace(/(Li, J\.)/g, '<span class="me">$1</span>');
     const titleHtml = p.doi
-      ? `<a href="${escapeHtml(p.doi)}" target="_blank" rel="noopener noreferrer">${escapeHtml(p.title)}</a>`
+      ? `<a href="${escapeHtml(safeUrl(p.doi))}" target="_blank" rel="noopener noreferrer">${escapeHtml(p.title)}</a>`
       : escapeHtml(p.title);
     item.innerHTML = `
       <div class="pub-authors">${authors} <span class="pub-year">(${escapeHtml(String(p.year))})</span></div>
@@ -479,7 +495,7 @@ function renderPublications() {
       <div class="pub-row">
         ${p.badge ? `<span class="pub-badge">${escapeHtml(p.badge)}</span>` : ''}
         <button class="copy-cite" type="button" data-idx="${i}">Copy Citation</button>
-        ${p.doi ? `<a class="copy-cite" href="${escapeHtml(p.doi)}" target="_blank" rel="noopener noreferrer">DOI ↗</a>` : ''}
+        ${p.doi ? `<a class="copy-cite" href="${escapeHtml(safeUrl(p.doi))}" target="_blank" rel="noopener noreferrer">DOI ↗</a>` : ''}
       </div>`;
     list.appendChild(item);
   });
@@ -529,6 +545,7 @@ function renderProjects() {
       class: 'filter-btn' + (i === 0 ? ' active' : ''),
       type: 'button',
       'data-tag': tag,
+      'aria-pressed': String(i === 0),
     }, tag);
     filters.appendChild(btn);
   });
@@ -550,16 +567,19 @@ function renderProjects() {
       <div class="project-actions">
         <button class="show-more" type="button">Show more ↓</button>
         ${p.github
-        ? `<a class="btn btn-ghost btn-small" href="${escapeHtml(p.github)}" target="_blank" rel="noopener noreferrer">GitHub ↗</a>`
+        ? `<a class="btn btn-ghost btn-small" href="${escapeHtml(safeUrl(p.github))}" target="_blank" rel="noopener noreferrer">GitHub ↗</a>`
         : `<span class="project-private">Private repo</span>`}
       </div>`;
-    const list = card.querySelector('.project-bullets');
-    const btn = card.querySelector('.show-more');
-    btn.addEventListener('click', () => {
-      const open = list.classList.toggle('expanded');
-      btn.textContent = open ? 'Show less ↑' : 'Show more ↓';
-    });
     grid.appendChild(card);
+  });
+
+  // Single delegated listener handles all show-more buttons — avoids per-card attach.
+  grid.addEventListener('click', e => {
+    const btn = e.target.closest('.show-more');
+    if (!btn) return;
+    const list = btn.closest('.project-card').querySelector('.project-bullets');
+    const open = list.classList.toggle('expanded');
+    btn.textContent = open ? 'Show less ↑' : 'Show more ↓';
   });
 }
 
@@ -579,6 +599,7 @@ function renderSkills() {
       class: 'filter-btn' + (i === 0 ? ' active' : ''),
       type: 'button',
       'data-skill-filter': String(i),
+      'aria-pressed': String(i === 0),
     }, label));
   });
 
@@ -601,11 +622,25 @@ function renderSkills() {
   });
   content.appendChild(progPanel);
 
-  // Panel 1: Lab Techniques — pill grid, wraps both horizontally and vertically.
+  // Panel 1: Lab Techniques
   const labPanel = el('div', { class: 'skills-panel skill-panel-hidden', 'data-skill-panel': '1' });
-  const chain = el('div', { class: 'lab-chain' });
-  CONTENT.skills.lab.forEach(s => chain.appendChild(el('span', { class: 'lab-pill', text: s })));
-  labPanel.appendChild(chain);
+  const sopCard = el('div', { class: 'lab-sop-card' });
+  sopCard.appendChild(el('div', { class: 'lab-sop-header', text: 'Lab Techniques' }));
+  sopCard.appendChild(el('hr', { class: 'lab-sop-hr' }));
+  const reduceMotion = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  CONTENT.skills.lab.forEach((s, i) => {
+    const row = el('div', { class: 'lab-sop-row' });
+    if (!reduceMotion) row.style.animationDelay = `${i * 60}ms`; // 60ms stagger between rows
+    row.innerHTML = `
+      <span class="lab-sop-num">${String(i + 1).padStart(2, '0')}</span>
+      <span class="lab-sop-dash">──</span>
+      <span class="lab-sop-name">${escapeHtml(s)}</span>`;
+    sopCard.appendChild(row);
+    if (i < CONTENT.skills.lab.length - 1) {
+      sopCard.appendChild(el('div', { class: 'lab-sop-row-rule' }));
+    }
+  });
+  labPanel.appendChild(sopCard);
   content.appendChild(labPanel);
 
   // Panel 2: Languages — animated progress bars (triggered by initSkillBars).
@@ -642,14 +677,29 @@ function renderAchievements() {
     const grid = el('div', { class: 'ach-grid' });
     items.forEach((a, i) => {
       const card = el('article', {
-        class: 'ach-card',
+        class: 'ach-card' + (a.attachment ? ' ach-card--linked' : ''),
         'data-aos': 'fade-up',
         'data-aos-delay': String(i * 60), // stagger reveal by 60ms per card
       });
+      const viewBadge = a.attachment ? `
+        <span class="ach-attach-badge" aria-label="View attachment">
+          <svg viewBox="0 0 24 24" width="11" height="11" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/>
+            <polyline points="15 3 21 3 21 9"/>
+            <line x1="10" y1="14" x2="21" y2="3"/>
+          </svg>
+          View
+        </span>` : '';
       card.innerHTML = `
         <div class="ach-name">${escapeHtml(a.name)}</div>
         <div class="ach-desc">${escapeHtml(a.desc)}</div>
-        <span class="ach-year">${escapeHtml(String(a.year))}</span>`;
+        <div class="ach-card-footer">
+          <span class="ach-year">${escapeHtml(String(a.year))}</span>
+          ${viewBadge}
+        </div>`;
+      if (a.attachment) {
+        card.addEventListener('click', () => window.open(safeUrl(a.attachment), '_blank', 'noopener,noreferrer'));
+      }
       grid.appendChild(card);
     });
     group.appendChild(grid);
@@ -674,7 +724,7 @@ function renderContact() {
     const val = CONTENT.hero.links[key];
     if (!val) return;
     const cfg = ICON_PATHS[key];
-    const a = el('a', { href: val, 'aria-label': cfg.label, target: '_blank', rel: 'noopener noreferrer' });
+    const a = el('a', { href: safeUrl(val), 'aria-label': cfg.label, target: '_blank', rel: 'noopener noreferrer' });
     a.innerHTML = `<svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path fill="currentColor" d="${cfg.path}"/></svg>`;
     wrap.appendChild(a);
   });
@@ -712,6 +762,7 @@ function initNav() {
   // Scroll-spy: when a section enters the central viewport region, mark its
   // nav link active. rootMargin biases the trigger upward so the active
   // state changes when the section heading is roughly under the nav.
+  // spy is intentionally page-lifetime — no disconnect needed for a static single-page site.
   const spy = new IntersectionObserver(entries => {
     entries.forEach(e => {
       if (!e.isIntersecting) return;
@@ -776,7 +827,11 @@ function initProjectFilters() {
   filters.addEventListener('click', e => {
     const btn = e.target.closest('.filter-btn');
     if (!btn) return;
-    $$('.filter-btn', filters).forEach(b => b.classList.toggle('active', b === btn));
+    $$('.filter-btn', filters).forEach(b => {
+      const isActive = b === btn;
+      b.classList.toggle('active', isActive);
+      b.setAttribute('aria-pressed', String(isActive));
+    });
     const tag = btn.dataset.tag;
     $$('.project-card').forEach(card => {
       const match = tag === 'All' || card.dataset.language === tag;
@@ -805,18 +860,24 @@ function initCopyCitation() {
       setTimeout(() => { btn.textContent = 'Copy Citation'; }, 2000);
       return;
     }
-    navigator.clipboard.writeText(cite).then(() => {
-      const original = btn.textContent;
-      btn.textContent = 'Copied ✓';
-      btn.classList.add('copied');
-      setTimeout(() => {
-        btn.textContent = original;
-        btn.classList.remove('copied');
-      }, 2000);
-    }).catch(() => {
+    // try/catch guards against synchronous throws in insecure contexts (http, file://).
+    try {
+      navigator.clipboard.writeText(cite).then(() => {
+        const original = btn.textContent;
+        btn.textContent = 'Copied ✓';
+        btn.classList.add('copied');
+        setTimeout(() => {
+          btn.textContent = original;
+          btn.classList.remove('copied');
+        }, 2000);
+      }).catch(() => {
+        btn.textContent = 'Copy failed';
+        setTimeout(() => { btn.textContent = 'Copy Citation'; }, 2000);
+      });
+    } catch (_) {
       btn.textContent = 'Copy failed';
       setTimeout(() => { btn.textContent = 'Copy Citation'; }, 2000);
-    });
+    }
   });
 }
 
@@ -832,7 +893,11 @@ function initSkillFilters() {
   wrap.addEventListener('click', e => {
     const btn = e.target.closest('.filter-btn[data-skill-filter]');
     if (!btn) return;
-    $$('.filter-btn[data-skill-filter]').forEach(b => b.classList.toggle('active', b === btn));
+    $$('.filter-btn[data-skill-filter]').forEach(b => {
+      const isActive = b === btn;
+      b.classList.toggle('active', isActive);
+      b.setAttribute('aria-pressed', String(isActive));
+    });
     const idx = btn.dataset.skillFilter;
     $$('[data-skill-panel]').forEach(panel => {
       panel.classList.toggle('skill-panel-hidden', panel.dataset.skillPanel !== idx);

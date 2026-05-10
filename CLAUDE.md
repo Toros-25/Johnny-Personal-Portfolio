@@ -89,8 +89,8 @@ Always clean up side effects in observers and animation loops.
 
 - Plain CSS in `style.css`, no preprocessor, no utility framework.
 - CSS custom properties (`--accent`, `--bg`, `--text`, etc.) defined in `:root`
-  drive the entire palette. The site is dark-mode-only; there is no
-  `body.light-mode` rule or per-component variant.
+  drive the entire palette. The site is **light mode only** (white background,
+  dark text); there is no `body.dark-mode` rule or per-component variant.
 - Standard card style is the `.card` class:
   `background: var(--bg-card); border: 1px solid var(--border-soft);
    border-radius: var(--radius); transition: transform/background/shadow;`
@@ -107,13 +107,14 @@ Always clean up side effects in observers and animation loops.
 
 ## Dark / Light Mode
 
-Dark mode is the **only** mode — there is no light mode toggle in the current
+Light mode is the **only** mode — there is no theme toggle in the current
 codebase. `initThemeToggle()` and `#theme-toggle` have been removed. The
-palette is entirely driven by the CSS custom properties in `:root`.
+palette is entirely driven by the CSS custom properties in `:root`
+(`--bg: #ffffff`, `--text: #1c1917`, etc.).
 
-If you want to re-add a toggle in the future, re-implement `initThemeToggle()`
-following the pattern described in git history and add `#theme-toggle` to the
-`nav-controls` div in `index.html`.
+If you want to add a dark-mode toggle in the future, re-implement
+`initThemeToggle()` and add `#theme-toggle` to the `nav-controls` div in
+`index.html`, then define a `body.dark-mode` override block in `style.css`.
 
 ---
 

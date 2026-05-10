@@ -1179,28 +1179,80 @@ p {
   box-shadow: 0 0 24px var(--accent-dim);
 }
 
-/* lab chain — pills connected by dotted lines */
-.lab-chain {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.6rem;
-  align-items: flex-start;
+/* lab SOP protocol card */
+.lab-sop-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-soft);
+  border-radius: var(--radius);
+  padding: 1.5rem 1.75rem;
 }
 
-.lab-pill {
+.lab-sop-header {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin-bottom: 0.75rem;
+}
+
+.lab-sop-hr {
+  border: none;
+  border-top: 1px solid var(--border-soft);
+  margin: 0 0 0.25rem;
+}
+
+.lab-sop-row {
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+  padding: 0.6rem 0.5rem;
+  border-radius: 6px;
+  transition: background 0.2s;
+  cursor: default;
+  animation: lab-sop-fade-up 0.35s ease both;
+}
+
+.lab-sop-row:hover {
+  background: rgba(153, 27, 27, 0.06);
+}
+
+.lab-sop-row:hover .lab-sop-name {
+  transform: translateX(4px);
+}
+
+.lab-sop-num {
   font-family: var(--font-mono);
   font-size: 0.78rem;
-  padding: 0.45rem 0.85rem;
-  background: var(--bg-card-hover);
-  border: 1px solid var(--border);
-  border-radius: 999px;
-  color: var(--text);
-  transition: background 0.2s, color 0.2s;
+  color: var(--accent);
+  min-width: 1.6rem;
+  flex-shrink: 0;
 }
 
-.lab-pill:hover {
-  background: var(--accent-dim);
-  color: var(--accent);
+.lab-sop-dash {
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  color: var(--text-muted);
+  opacity: 0.5;
+  flex-shrink: 0;
+}
+
+.lab-sop-name {
+  font-family: var(--font-body);
+  font-size: 0.9rem;
+  color: var(--text);
+  transition: transform 0.2s;
+}
+
+.lab-sop-row-rule {
+  height: 1px;
+  background: var(--border-soft);
+  margin: 0 0.5rem;
+}
+
+@keyframes lab-sop-fade-up {
+  from { opacity: 0; transform: translateY(8px); }
+  to   { opacity: 1; transform: translateY(0); }
 }
 
 
@@ -1308,6 +1360,33 @@ p {
   background: var(--accent-dim);
   color: var(--accent);
   border-radius: 4px;
+}
+
+.ach-card-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+}
+
+.ach-card--linked {
+  cursor: pointer;
+}
+
+.ach-attach-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  color: var(--accent);
+  opacity: 0.7;
+  transition: opacity 0.2s;
+  white-space: nowrap;
+}
+
+.ach-card--linked:hover .ach-attach-badge {
+  opacity: 1;
 }
 
 /* ================================================================
