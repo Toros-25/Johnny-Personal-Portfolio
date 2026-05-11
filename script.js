@@ -204,7 +204,7 @@ const CONTENT = {
       type: "Part-time Job",
       bullets: [
         "Coached children aged 5-14 in skating and hockey, adapting instruction for diverse learning needs.",
-        "Led Learn to Skate and hockey camps for 20+ children; designed drills that built confidence, coordination, and social skills.",
+        "Led Learn to Skate and hockey camps for 20+ children; designed drills in private 1-on-1 sessions to directly tailor to childrens' needs",
         "Supporting children with autism in developing confidence, coordination, and social skills through skating and hockey.",
       ],
       skills: ["Coaching", "Adaptive Instruction", "Leadership"],
