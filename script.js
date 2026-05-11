@@ -203,8 +203,9 @@ const CONTENT = {
       location: "Thornhill, ON",
       type: "Part-time Job",
       bullets: [
-        "Coached children aged 5-14 in skating and hockey, adapting instruction for diverse learning needs including autism.",
+        "Coached children aged 5-14 in skating and hockey, adapting instruction for diverse learning needs.",
         "Led Learn to Skate and hockey camps for 20+ children; designed drills that built confidence, coordination, and social skills.",
+        "Supporting children with autism in developing confidence, coordination, and social skills through skating and hockey.",
       ],
       skills: ["Coaching", "Adaptive Instruction", "Leadership"],
     },
