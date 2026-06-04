@@ -75,62 +75,67 @@ const CONTENT = {
   research: [
     {
       title: "Undergraduate Researcher",
-      lab: "Radiation Physics & Dosimetry Lab",
+      lab: "",
       pi: "Dr. Arman Sarfehnia",
-      institution: "Sunnybrook Hospital",
+      institution: "Sunnybrook Research Institute",
       location: "Toronto, ON",
       start: "Feb 2026",
       end: "Present",
       color: "#b91c1c",
       bullets: [
-        "Conducted research on radiation dosimetry and quality assurance (QA) to improve accuracy and reliability of clinical dose measurements in radiotherapy.",
-        "Assisted in design, testing, and evaluation of calorimetry-based detectors, contributing to improved detector robustness and reduced measurement error.",
-        "Supported development of automated QA data analysis tools; performed literature reviews on dosimetry principles and clinical QA methodologies.",
+        "Conducted research on radiation dosimetry and quality assurance in radiotherapy, focusing on improving the accuracy and reproducibility of clinical dose measurements toward the ~1% precision required for absolute reference dosimetry",
+        "Assisted in the design, testing, and evaluation of calorimetry-based detectors across multiple irradiation conditions, identifying sources of measurement error to reduce overall measurement uncertainty",
+        "Developed a Python program using NumPy and pyvisa to automate calorimeter dose analysis across multiple irradiation runs, cutting per-dataset processing from ~30 minutes to under a minute",
+        "Built a multithreaded acquisition script sampling up to 4 RTD probes over GPIB at sub-second intervals, converting resistance to temperature with milli-Kelvin resolution for real-time drift monitoring during QA sessions",
       ],
     },
     {
-      title: "Undergraduate Researcher",
+      title: "Undergraduate Researcher, IMS SURP Fellow",
       lab: "Barua Lab",
       pi: "Dr. Moumita Barua",
-      institution: "University of Toronto / UHN - Toronto General Hospital",
+      institution: "University of Toronto / University Health Network (UHN)",
       location: "Toronto, ON",
       start: "Jan 2026",
       end: "Present",
       color: "#991b1b",
       bullets: [
-        "Independently reanalyzed podocyte mass spectrometry data to validate P3H2-mediated type IV collagen modifications, cross-referencing against 2 prior analyses to assess proteomic reproducibility.",
-        "Assisted with undifferentiated-to-differentiated podocyte cell culture and mass spectrometry workflows across experimental plates.",
-        "Performed Western blot to validate Col4a3 antibody specificity on podocyte protein extracts, supporting QC for a key basement membrane integrity reagent.",
+        "Independently reanalyzed podocyte mass spectrometry data to validate P3H2-mediated type IV collagen modifications, cross-referencing findings against 2 prior analyses to assess proteomic reproducibility.",
+        "Assisted in undifferentiated-to-differentiated podocyte cell culture and mass spectrometry workflows, performing Western blot to validate Col4a3 antibody specificity on podocyte protein extracts and supporting quality control for a key reagent in basement membrane integrity research.",
+        "Independently designed and deployed the Barua Lab's first-ever lab website using HTML, CSS, JavaScript, and Vue.js, publicly showcasing the lab's research, open datasets, and open-source software",
+        "Selected as a funded IMS Summer Undergraduate Research Program (SURP) fellow through the University of Toronto's Temerty Faculty of Medicine, one of Canada's leading medical research institutions.",
       ],
     },
+
     {
-      title: "Primary Researcher, First Author",
-      lab: "Remote",
+      title: "Student Researcher, Sole Author",
+      lab: "Zhang Lab",
       pi: "Dr. Hui Zhang",
-      institution: "Northwestern University",
+      institution: "Northwestern University / Feinberg School of Medicine",
       location: "Remote",
       start: "Mar 2025",
       end: "Apr 2026",
       color: "#b91c1c",
       bullets: [
-        "Performed epidemiological analysis using the NHANES 2017-2018 database (~550 participants) to investigate associations between environmental heavy metal exposure and persistent CMV infection.",
-        "Built and validated an R pipeline: regression modeling, log transformations, GAMs, data wrangling, missing-data handling, and sensitivity analyses.",
-        "Sole-authored paper peer-reviewed and published in Advances in Management and Intelligent Technologies (AMIT journal).",
+        "Analyzed 4 heavy metal biomarkers across ≈554 U.S. adults from NHANES 2017–2018 to quantify associations between environmental metal exposure and persistent CMV infection, a virus affecting >50% of the U.S. population",
+        "Applied and built 5+ statistical models in R including multivariable regression, GAMs, and sensitivity analyses across all metal-CMV exposure-outcome pairs to control for confounders and evaluate exposure-outcome relationships",
+        "Performed 4 sensitivity analyses and Weighted Quantile Sum (WQS) mixture analysis using R packages including gWQS, survey, and ggplot2, identifying Se as the dominant metal mixture contributor at ~77% weight across all exposure-outcome pairs",
+        "Sole-authored research paper peer-reviewed and published by Asia Pacific Science Press in the Advances in Management and Intelligent Technologies (AMIT) journal, indexed on Google Scholar, Scopus, and Web of Science",
       ],
     },
     {
-      title: "Primary Researcher, First Author",
+      title: "CCIR Student Researcher, First Author",
       lab: "Dettmer Lab / CCIR",
       pi: "Dr. Ulf Dettmer",
       institution: "Harvard Medical School / Brigham & Women's Hospital",
       location: "Boston, MA",
       start: "Jul 2024",
       end: "Feb 2026",
-      color: "#b91c1c",
+      color: "#991b1b",
       bullets: [
         "Conducted in-person wet-lab experiments at Brigham & Women's Hospital: three IncuCyte live-cell assays quantifying alpha-synuclein aggregation across 5 compounds, 3 doses, and 35+ replicates per condition.",
         "Performed quantitative image analysis of inclusion burden, total YFP signal, and cell density; conducted dose-response and statistical significance testing.",
-        "First-author peer-reviewed publication in the Journal of High School Science; poster at 2026 AAAS Annual Meeting; oral talk at CCIR Student Symposium to Cambridge faculty and Nobel Laureate Thomas R. Cech.",
+        "First-author peer-reviewed publication in the Journal of High School Science; selected as 1 of few undergraduate researchers for poster presentation at the 2026 AAAS Annual Meeting, the world's largest general scientific society",
+        "Delivered an oral research talk on α-synuclein disaggregation at the CCIR Student Symposium to University of Cambridge faculty and Nobel Laureate Thomas R. Cech (Nobel Prize in Chemistry, 1989)",
       ],
     },
   ],
@@ -182,6 +187,20 @@ const CONTENT = {
       skills: ["A/B Testing", "Product Strategy", "User Research", "AI Tools"],
     },
     {
+      company: "NorthStar Special Needs Society (NSNS)",
+      role: "Lead Instructor & Coach",
+      start: "Sep 2025",
+      end: "Present",
+      location: "Thornhill, ON",
+      type: "Part-time Job",
+      bullets: [
+        "Coached children aged 5-14 in skating and hockey, adapting instruction for diverse learning needs.",
+        "Led Learn to Skate and hockey camps for 20+ children; designed drills in private 1-on-1 sessions to directly tailor to childrens' needs",
+        "Supporting children with autism in developing confidence, coordination, and social skills through skating and hockey.",
+      ],
+      skills: ["Coaching", "Adaptive Instruction", "Leadership"],
+    },
+    {
       company: "Pharmaron Beijing Co., Ltd.",
       role: "Chemical Analysis Researcher",
       start: "May 2025",
@@ -195,25 +214,25 @@ const CONTENT = {
       ],
       skills: ["LC-MS", "Mass Spectrometry", "Excel", "Scientific Communication"],
     },
-    {
-      company: "NorthStar Special Needs Society (NSNS)",
-      role: "Lead Instructor & Coach",
-      start: "Dec 2022",
-      end: "Present",
-      location: "Thornhill, ON",
-      type: "Part-time Job",
-      bullets: [
-        "Coached children aged 5-14 in skating and hockey, adapting instruction for diverse learning needs.",
-        "Led Learn to Skate and hockey camps for 20+ children; designed drills in private 1-on-1 sessions to directly tailor to childrens' needs",
-        "Supporting children with autism in developing confidence, coordination, and social skills through skating and hockey.",
-      ],
-      skills: ["Coaching", "Adaptive Instruction", "Leadership"],
-    },
   ],
 
   projectFilters: ["All", "Python", "R"],
 
   projects: [
+    {
+      name: "GradeMaster",
+      language: "Python",
+      tech: ["Python", "Flask", "Jinja2", "Javascript", "HTML/CSS", "JSON"],
+      description: "Full-stack web app for tracking university course grades, predicting final grades, and simulating required scores on pending assessments across weighted items and grouped components.",
+      bullets: [
+        "Engineered a what-if solver that isolates any pending item as a variable, holding all others at the current predicted grade to compute the exact score needed to hit a target final grade.",
+        "Built atomic JSON persistence with temp-file-replace writes and a Flask REST layer supporting standalone items, sub-item groups, and auto-saving edits with 500ms debounce.",
+        "Deployed via Gunicorn on Render — includes a Procfile and requires only pip install -r requirements.txt. No database needed; all data persists in a single gradebook.json file.",
+      ],
+      github: "https://github.com/Toros-25/GradeMaster",
+      website: "https://grademaster-mqoa.onrender.com", // set to live URL to show a Website button, e.g. "https://grademaster.onrender.com"
+      pdf: "", // set to "assets/filename.pdf" (or a full URL) to show a PDF button
+    },
     {
       name: "S&P 500 Market Crash Simulator",
       language: "Python",
@@ -224,6 +243,8 @@ const CONTENT = {
         "Built an interactive dashboard integrating yfinance, NetworkX, and NumPy. Led a 4-person team.",
       ],
       github: "https://github.com/Toros-25/Project-2",
+      website: "",
+      pdf: "",
     },
     {
       name: "Nucleus Independent Living: Chronic Condition Analysis",
@@ -231,10 +252,13 @@ const CONTENT = {
       tech: ["R", "ggplot2", "dplyr"],
       description: "22-page statistical analysis evaluating how clients with varying chronic conditions respond to Nucleus Independent Living services, analyzing over 5,000 client records.",
       bullets: [
-        "Quantified changes in hospital days, healthcare costs, and readmission rates using data wrangling and summary statistics in R.",
-        "Led a 3-person team supervised by Prof. Nathalie Moon, University of Toronto.",
+        "Led a 3-person team analyzing ~4,000 Nucleus client records across 6 chronic condition burden groups, quantifying 12-month pre/post changes in hospital days, healthcare costs, and unscheduled readmission rates in R",
+        "Performed data wrangling across 3 research questions, engineering new variables including chronic burden groupings, cost reduction metrics, and age categories across 4 groups, producing summary tables and visualizations using ggplot2",
+        "Found that clients with 5+ chronic conditions had a median 7-day reduction in hospital stays and respiratory condition clients saw the largest average cost reduction at ~$22,500, suggesting Nucleus services most benefit high-need clients",
       ],
       github: "",
+      website: "",
+      pdf: "assets/r-project1.pdf",
     },
   ],
 
@@ -255,8 +279,8 @@ const CONTENT = {
 
     programming: {
       languages: ["Python", "R", "JavaScript", "HTML/CSS", "LaTeX"],
-      frameworks: ["Dash", "Plotly"],
-      devTools: ["PyCharm", "VS Code", "Visual Studio", "Git"],
+      frameworks: ["Dash", "Plotly", "Flask"],
+      devTools: ["PyCharm", "VS Code", "Visual Studio", "Git", "Render"],
       libraries: ["NetworkX", "NumPy", "ggplot2", "dplyr"],
     },
 
@@ -454,9 +478,9 @@ function renderResearch() {
     const hiddenBullets = r.bullets.slice(2).map(b => `<li>${escapeHtml(b)}</li>`).join('');
     card.innerHTML = `
       <article class="research-card">
-        <div class="research-meta">${escapeHtml(r.start)} — ${escapeHtml(r.end)} · ${escapeHtml(r.location)}</div>
+        <div class="research-meta">${escapeHtml(r.start)} — ${escapeHtml(r.end)}${r.location ? ' · ' + escapeHtml(r.location) : ''}</div>
         <h3 class="research-title">${escapeHtml(r.title)}</h3>
-        <div class="research-lab">${escapeHtml(r.lab)} · ${escapeHtml(r.institution)}</div>
+        <div class="research-lab">${r.lab ? escapeHtml(r.lab) + ' · ' + escapeHtml(r.institution) : escapeHtml(r.institution)}</div>
         <div class="research-pi">PI: ${escapeHtml(r.pi)}</div>
         <ul class="research-bullets">${visibleBullets}${hiddenBullets}</ul>
         ${r.bullets.length > 2 ? `<button class="show-more" type="button">Show more ↓</button>` : ''}
@@ -567,6 +591,12 @@ function renderProjects() {
       <ul class="project-bullets">${bulletsHtml}</ul>
       <div class="project-actions">
         <button class="show-more" type="button">Show more ↓</button>
+        ${p.website
+        ? `<a class="btn btn-ghost btn-small" href="${escapeHtml(safeUrl(p.website))}" target="_blank" rel="noopener noreferrer">Website ↗</a>`
+        : ''}
+        ${p.pdf
+        ? `<a class="btn btn-ghost btn-small" href="${escapeHtml(safeUrl(p.pdf))}" target="_blank" rel="noopener noreferrer">PDF ↗</a>`
+        : ''}
         ${p.github
         ? `<a class="btn btn-ghost btn-small" href="${escapeHtml(safeUrl(p.github))}" target="_blank" rel="noopener noreferrer">GitHub ↗</a>`
         : `<span class="project-private">Private repo</span>`}
