@@ -279,7 +279,7 @@ const CONTENT = {
 
     programming: {
       languages: ["Python", "R", "JavaScript", "HTML/CSS", "LaTeX"],
-      frameworks: ["Dash", "Plotly", "Flask"],
+      frameworks: ["Dash", "Plotly", "Flask", "Vue", "React"],
       devTools: ["PyCharm", "VS Code", "Visual Studio", "Git", "Render"],
       libraries: ["NetworkX", "NumPy", "ggplot2", "dplyr"],
     },
