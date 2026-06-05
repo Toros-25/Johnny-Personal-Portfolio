@@ -476,8 +476,8 @@ function renderResearch() {
   wrap.innerHTML = '';
   CONTENT.research.forEach((r, i) => {
     const card = el('div', { class: 'timeline-item', 'data-aos': 'fade-up' });
-    // The dot color matches the project's color field.
-    card.style.setProperty('--accent', r.color || 'var(--accent)');
+    // Scoped to dot + card left-border only; global --accent is not overridden.
+    card.style.setProperty('--timeline-dot-color', r.color || 'var(--accent)');
     const visibleBullets = r.bullets.slice(0, 2).map(b => `<li>${escapeHtml(b)}</li>`).join('');
     const hiddenBullets = r.bullets.slice(2).map(b => `<li>${escapeHtml(b)}</li>`).join('');
     card.innerHTML = `
@@ -623,7 +623,14 @@ function renderProjects() {
   // Render project cards.
   CONTENT.projects.forEach(p => {
     const techChips = p.tech.map(t => `<span class="skill-chip">${escapeHtml(t)}</span>`).join('');
-    const bulletsHtml = p.bullets.map(b => `<li>${escapeHtml(b)}</li>`).join('');
+    // First bullet is always visible; wrap remainder in a collapsible span so
+    // max-height transition still drives the reveal for the rest.
+    const firstBullet = p.bullets.length > 0
+      ? `<li class="project-bullet--first">${escapeHtml(p.bullets[0])}</li>`
+      : '';
+    const restBullets = p.bullets.slice(1).map(b => `<li>${escapeHtml(b)}</li>`).join('');
+    // Show more button only makes sense when there are bullets beyond the first.
+    const hasMore = p.bullets.length > 1;
     const card = el('article', {
       class: 'card project-card',
       'data-language': p.language || '',
@@ -633,9 +640,9 @@ function renderProjects() {
       <h3 class="project-name">${escapeHtml(p.name)}</h3>
       <div class="project-tech">${techChips}</div>
       <p class="project-desc">${escapeHtml(p.description)}</p>
-      <ul class="project-bullets">${bulletsHtml}</ul>
+      <ul class="project-bullets">${firstBullet}${restBullets}</ul>
       <div class="project-actions">
-        <button class="show-more" type="button">Show more ↓</button>
+        ${hasMore ? `<button class="show-more" type="button">Show more ↓</button>` : ''}
         ${p.website
         ? `<a class="btn btn-ghost btn-small" href="${escapeHtml(safeUrl(p.website))}" target="_blank" rel="noopener noreferrer">Website ↗</a>`
         : ''}
@@ -890,7 +897,6 @@ function initNav() {
 }
 
 
-
 // ================================================================
 // initWorkFilters — show only work entries matching the selected
 // type (or all when "All" is active). Filter labels must match the
@@ -986,11 +992,15 @@ function initCopyCitation() {
 // ================================================================
 // initSkillFilters — show the active skills panel, hide the rest.
 // Triggers language bar animation the first time panel 2 is shown.
+// Under prefers-reduced-motion, widths are set immediately without
+// relying on the CSS transition (which collapses to ~0ms under that
+// media query, leaving bars visually empty on the first render pass).
 // ================================================================
 function initSkillFilters() {
   const wrap = $('#skill-filters');
   if (!wrap) return;
   let barsAnimated = false;
+  const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   wrap.addEventListener('click', e => {
     const btn = e.target.closest('.filter-btn[data-skill-filter]');
     if (!btn) return;
@@ -1005,7 +1015,16 @@ function initSkillFilters() {
     });
     if (idx === '2' && !barsAnimated) {
       barsAnimated = true;
-      $$('.lang-bar-fill').forEach(f => { f.style.width = (f.dataset.pct || 0) + '%'; });
+      if (reducedMotion) {
+        // Under reduced-motion the CSS transition collapses to ~0ms, so set
+        // widths synchronously after the panel is visible to avoid empty bars.
+        $$('.lang-bar-fill').forEach(f => {
+          f.style.transition = 'none';
+          f.style.width = (f.dataset.pct || 0) + '%';
+        });
+      } else {
+        $$('.lang-bar-fill').forEach(f => { f.style.width = (f.dataset.pct || 0) + '%'; });
+      }
     }
   });
 }

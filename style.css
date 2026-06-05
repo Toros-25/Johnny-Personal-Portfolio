@@ -59,9 +59,7 @@ a {
   text-decoration: none;
 }
 
-a:hover {
-  color: var(--text-strong);
-}
+/* Global a:hover intentionally removed — component rules handle their own hover colors. */
 
 button {
   font-family: inherit;
@@ -202,6 +200,16 @@ p {
   color: var(--text-strong);
 }
 
+.nav-link--secondary {
+  font-size: 0.78rem;
+  color: var(--text-muted);
+  opacity: 0.72;
+}
+
+.nav-link--secondary:hover {
+  opacity: 1;
+}
+
 .nav-link.active {
   color: var(--accent);
 }
@@ -308,7 +316,7 @@ p {
 
 .btn-ghost:hover {
   background: var(--accent-dim);
-  color: var(--text-strong);
+  color: var(--accent);
 }
 
 .btn-large {
@@ -721,7 +729,7 @@ p {
   height: 14px;
   border-radius: 50%;
   background: var(--bg);
-  border: 2px solid var(--accent);
+  border: 2px solid var(--timeline-dot-color, var(--accent));
   box-shadow: 0 0 0 4px var(--accent-dim);
 }
 
@@ -736,7 +744,7 @@ p {
 .research-card {
   background: var(--bg-card);
   border: 1px solid var(--border-soft);
-  border-left: 4px solid var(--accent);
+  border-left: 4px solid var(--timeline-dot-color, var(--accent));
   border-radius: var(--radius);
   padding: 1.5rem;
   transition: transform 0.2s, box-shadow 0.2s, background 0.2s;
@@ -1085,7 +1093,8 @@ p {
 .project-bullets {
   font-size: 0.88rem;
   overflow: hidden;
-  max-height: 0;
+  /* 3.5em shows approximately one bullet line including its bottom margin */
+  max-height: 3.5em;
   transition: max-height 0.3s ease;
 }
 
@@ -1329,8 +1338,9 @@ p {
 
 .ach-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
   gap: 1.25rem;
+  align-items: start;
 }
 
 .ach-card {
@@ -1410,6 +1420,14 @@ p {
 .contact-line {
   font-size: 1.1rem;
   color: var(--text-muted);
+  margin-bottom: 0.5rem;
+}
+
+.contact-availability {
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  opacity: 0.75;
   margin-bottom: 2rem;
 }
 
@@ -1490,10 +1508,6 @@ p {
 @media (max-width: 900px) {
   .work-grid {
     grid-template-columns: 1fr;
-  }
-
-  .ach-grid {
-    grid-template-columns: repeat(2, 1fr);
   }
 
   .about-grid {
@@ -1589,10 +1603,6 @@ p {
     left: 5px !important;
     right: auto !important;
     top: 1.75rem;
-  }
-
-  .ach-grid {
-    grid-template-columns: 1fr;
   }
 
   .footer-inner {
