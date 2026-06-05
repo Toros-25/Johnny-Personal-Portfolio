@@ -16,8 +16,10 @@ const CONTENT = {
     typewriterPhrases: [
       "Undergraduate Researcher",
       "Aspiring Software Engineer",
-      "Hockey Player",
+      "OHL Drafted Hockey Player",
       "Published Author",
+      "Bench-to-Codebase Researcher",
+
     ],
     profileImage: "assets/profile.jpg", // set to "" to hide
     resumePdf: "assets/resume.pdf",
@@ -25,12 +27,12 @@ const CONTENT = {
       github: "https://github.com/Toros-25",
       linkedin: "https://www.linkedin.com/in/johnny-li-ljy/",
       googleScholar: "",
-      email: "johnnyljy.li@mail.utoronto.ca",
+      email: "lijohnny269@gmail.com",
     },
   },
 
   about: {
-    bio: "I'm an undergraduate at the University of Toronto studying Computer Science and Quantitative Biology. My research spans kidney genetics, radiation dosimetry, Parkinson's disease protein aggregation, and CMV epidemiology. I publish peer-reviewed work, build AI tools, and play competitive hockey — I'm drawn to problems that sit at the edge of what's understood, whether that's protein folding dynamics or the limits of machine learning.",
+    bio: "I'm an undergraduate at Northwestern University studying Biomedical Engineering and Artificial Intelligence. My research has covered kidney genetics, radiation dosimetry, Parkinson's disease protein aggregation, and CMV epidemiology. I publish peer-reviewed work, build AI tools, and play competitive hockey. I like problems that don't have clean answers yet, whether that's how a protein misfolds or where a model breaks down.",
     hockeyCallout: "Drafted in the OHL Priority Selection | Played in the 14th National China Winter Games for Tianjin",
   },
 
@@ -42,10 +44,10 @@ const CONTENT = {
       university: "Northwestern University",
       logo: "assets/northwestern_logo.png",
       location: "Evanston, IL",
-      degree: "",
+      degree: "BS. Major in Biomedical Engineering & Artificial Intelligence, Minor in Data Science",
       start: "Sep 2026",
       end: "Jun 2029",
-      gpa: "—",
+      gpa: "4.0 / 4.0",
       courses: [
         "COMP_SCI 211 — Fundamentals of Computer Programming II",
         "COMP_SCI 214 — Data Structures & Algorithms",
@@ -55,10 +57,10 @@ const CONTENT = {
       university: "University of Toronto",
       logo: "assets/uoft_logo.png",
       location: "Toronto, ON",
-      degree: "HBSc. Computer Science & Quantitative Biology",
+      degree: "HBSc. Major in Computer Science & Quantitative Biology, Minor in Statistics",
       start: "Sep 2025",
       end: "Aug 2026",
-      gpa: "3.9 / 4.0",
+      gpa: "4.0 / 4.0",
       courses: [
         "CSC110 — Foundations of Computer Science I",
         "CSC111 — Foundations of Computer Science II",
@@ -81,12 +83,12 @@ const CONTENT = {
       location: "Toronto, ON",
       start: "Feb 2026",
       end: "Present",
-      color: "#b91c1c",
+      color: "#f87171",
       bullets: [
-        "Conducted research on radiation dosimetry and quality assurance in radiotherapy, focusing on improving the accuracy and reproducibility of clinical dose measurements toward the ~1% precision required for absolute reference dosimetry",
-        "Assisted in the design, testing, and evaluation of calorimetry-based detectors across multiple irradiation conditions, identifying sources of measurement error to reduce overall measurement uncertainty",
-        "Developed a Python program using NumPy and pyvisa to automate calorimeter dose analysis across multiple irradiation runs, cutting per-dataset processing from ~30 minutes to under a minute",
-        "Built a multithreaded acquisition script sampling up to 4 RTD probes over GPIB at sub-second intervals, converting resistance to temperature with milli-Kelvin resolution for real-time drift monitoring during QA sessions",
+        "Working on radiation dosimetry and QA for radiotherapy, pushing clinical dose measurements toward the ~1% precision needed for absolute reference dosimetry",
+        "Helped design and test calorimetry-based detectors across several irradiation conditions, tracking down sources of measurement error to bring down overall uncertainty",
+        "Wrote a Python tool (NumPy, pyvisa) that automates calorimeter dose analysis across irradiation runs, cutting per-dataset processing from ~30 minutes to under a minute",
+        "Built a multithreaded acquisition script that samples up to 4 RTD probes over GPIB at sub-second intervals and converts resistance to temperature at milli-Kelvin resolution, so we can watch for drift in real time during QA sessions",
       ],
     },
     {
@@ -97,12 +99,12 @@ const CONTENT = {
       location: "Toronto, ON",
       start: "Jan 2026",
       end: "Present",
-      color: "#991b1b",
+      color: "#dc2626",
       bullets: [
-        "Independently reanalyzed podocyte mass spectrometry data to validate P3H2-mediated type IV collagen modifications, cross-referencing findings against 2 prior analyses to assess proteomic reproducibility.",
-        "Assisted in undifferentiated-to-differentiated podocyte cell culture and mass spectrometry workflows, performing Western blot to validate Col4a3 antibody specificity on podocyte protein extracts and supporting quality control for a key reagent in basement membrane integrity research.",
-        "Independently designed and deployed the Barua Lab's first-ever lab website using HTML, CSS, JavaScript, and Vue.js, publicly showcasing the lab's research, open datasets, and open-source software",
-        "Selected as a funded IMS Summer Undergraduate Research Program (SURP) fellow through the University of Toronto's Temerty Faculty of Medicine, one of Canada's leading medical research institutions.",
+        "Reanalyzed podocyte mass spectrometry data on my own to confirm P3H2-mediated type IV collagen modifications, checking my results against 2 prior analyses to see how reproducible the proteomics actually were.",
+        "Ran undifferentiated-to-differentiated podocyte cell culture and mass spec workflows, including Western blots to check Col4a3 antibody specificity on podocyte protein extracts. The antibody is a key reagent for the lab's basement membrane integrity work.",
+        "Built the Barua Lab's first lab website from scratch (HTML, CSS, JavaScript, Vue.js) so the lab's research, open datasets, and open-source software are actually public.",
+        "Funded as an IMS Summer Undergraduate Research Program (SURP) fellow through the University of Toronto's Temerty Faculty of Medicine.",
       ],
     },
 
@@ -114,12 +116,12 @@ const CONTENT = {
       location: "Remote",
       start: "Mar 2025",
       end: "Apr 2026",
-      color: "#b91c1c",
+      color: "#991b1b",
       bullets: [
-        "Analyzed 4 heavy metal biomarkers across ≈554 U.S. adults from NHANES 2017–2018 to quantify associations between environmental metal exposure and persistent CMV infection, a virus affecting >50% of the U.S. population",
-        "Applied and built 5+ statistical models in R including multivariable regression, GAMs, and sensitivity analyses across all metal-CMV exposure-outcome pairs to control for confounders and evaluate exposure-outcome relationships",
-        "Performed 4 sensitivity analyses and Weighted Quantile Sum (WQS) mixture analysis using R packages including gWQS, survey, and ggplot2, identifying Se as the dominant metal mixture contributor at ~77% weight across all exposure-outcome pairs",
-        "Sole-authored research paper peer-reviewed and published by Asia Pacific Science Press in the Advances in Management and Intelligent Technologies (AMIT) journal, indexed on Google Scholar, Scopus, and Web of Science",
+        "Analyzed 4 heavy metal biomarkers across ≈554 U.S. adults from NHANES 2017–2018 to test for associations between environmental metal exposure and persistent CMV infection, a virus that more than half of U.S. adults carry",
+        "Built 5+ statistical models in R (multivariable regression, GAMs, sensitivity analyses) across every metal-CMV exposure-outcome pair to control for confounders and check the exposure-outcome relationships",
+        "Ran 4 sensitivity analyses and a Weighted Quantile Sum (WQS) mixture analysis with gWQS, survey, and ggplot2. Se came out as the dominant contributor to the metal mixture at ~77% weight across all exposure-outcome pairs",
+        "Sole-authored the paper, which was peer-reviewed and published by Asia Pacific Science Press in the Advances in Management and Intelligent Technologies (AMIT) journal, indexed on Google Scholar, Scopus, and Web of Science",
       ],
     },
     {
@@ -130,12 +132,12 @@ const CONTENT = {
       location: "Boston, MA",
       start: "Jul 2024",
       end: "Feb 2026",
-      color: "#991b1b",
+      color: "#450a0a",
       bullets: [
-        "Conducted in-person wet-lab experiments at Brigham & Women's Hospital: three IncuCyte live-cell assays quantifying alpha-synuclein aggregation across 5 compounds, 3 doses, and 35+ replicates per condition.",
-        "Performed quantitative image analysis of inclusion burden, total YFP signal, and cell density; conducted dose-response and statistical significance testing.",
-        "First-author peer-reviewed publication in the Journal of High School Science; selected as 1 of few undergraduate researchers for poster presentation at the 2026 AAAS Annual Meeting, the world's largest general scientific society",
-        "Delivered an oral research talk on α-synuclein disaggregation at the CCIR Student Symposium to University of Cambridge faculty and Nobel Laureate Thomas R. Cech (Nobel Prize in Chemistry, 1989)",
+        "Ran in-person wet-lab work at Brigham & Women's Hospital: three IncuCyte live-cell assays measuring alpha-synuclein aggregation across 5 compounds, 3 doses, and 35+ replicates per condition.",
+        "Did the image analysis for inclusion burden, total YFP signal, and cell density, then ran dose-response and significance testing on the results.",
+        "First-author peer-reviewed paper in the Journal of High School Science. Selected as one of a small number of undergraduate researchers to present a poster at the 2026 AAAS Annual Meeting.",
+        "Gave an oral talk on α-synuclein disaggregation at the CCIR Student Symposium to University of Cambridge faculty and Nobel Laureate Thomas R. Cech (Nobel Prize in Chemistry, 1989).",
       ],
     },
   ],
@@ -170,19 +172,20 @@ const CONTENT = {
     },
   ],
 
+  workFilters: ["All", "Internship", "Part-time Job"],
+
   work: [
     {
       company: "My Learning Space AI (MYLS)",
       role: "AI Product Manager Intern",
       start: "Jun 2025",
-      end: "Present",
+      end: "May 2026",
       location: "Toronto, ON",
       type: "Internship",
       bullets: [
-        "Conducted A/B tests and user interviews to identify friction points; redesigned booking flow, increasing conversions by 9%.",
-        "Built AI-generated mock prototypes to test concepts quickly and support early-stage user research.",
-        "Collaborated with engineering and design to ship data-backed product improvements.",
-        "Co-authored a book on AI-driven nonlinear growth (China Financial & Economic Publishing House, 2026).",
+        "Ran A/B tests and user interviews to find the biggest friction points in the booking flow, then redesigned it across a few iterations and lifted successful bookings by 9%.",
+        "Built AI-generated mock prototypes and worked with engineering and design to test concepts and feed early user research back into the product.",
+        "Co-authored a 5-chapter book published by China Financial & Economic Publishing House on how AI is reshaping education, skill formation, and institutional decision-making in North America.",
       ],
       skills: ["A/B Testing", "Product Strategy", "User Research", "AI Tools"],
     },
@@ -208,9 +211,9 @@ const CONTENT = {
       location: "Beijing, China",
       type: "Internship",
       bullets: [
-        "Operated LC-MS to analyze 50+ pharmaceutical samples; processed and interpreted spectra in Excel for compound identification and purity assessment.",
-        "Collaborated with 8 professional chemists supporting synthesis/analysis for widely used medications including cold treatments and acetaminophen.",
-        "Delivered 10+ presentations translating LC-MS findings for international clients.",
+        "Operated Liquid Chromatography–Mass Spectrometry (LC-MS) to analyze over 50 pharmaceutical samples, processing and interpreting mass spectra using Excel for compound identification and purity assessment.",
+        "Collaborated with 8 professional chemists to develop and synthesize compounds used in widely distributed medications, including cold treatments and acetaminophen (Tylenol).",
+        "Prepared and delivered 10+ research presentations translating LC–MS drug composition data into insights for international clients.",
       ],
       skills: ["LC-MS", "Mass Spectrometry", "Excel", "Scientific Communication"],
     },
@@ -223,11 +226,11 @@ const CONTENT = {
       name: "GradeMaster",
       language: "Python",
       tech: ["Python", "Flask", "Jinja2", "Javascript", "HTML/CSS", "JSON"],
-      description: "Full-stack web app for tracking university course grades, predicting final grades, and simulating required scores on pending assessments across weighted items and grouped components.",
+      description: "Full-stack web app for tracking university course grades, predicting final grades, and figuring out what scores you need on remaining assessments across weighted items and grouped components.",
       bullets: [
-        "Engineered a what-if solver that isolates any pending item as a variable, holding all others at the current predicted grade to compute the exact score needed to hit a target final grade.",
-        "Built atomic JSON persistence with temp-file-replace writes and a Flask REST layer supporting standalone items, sub-item groups, and auto-saving edits with 500ms debounce.",
-        "Deployed via Gunicorn on Render — includes a Procfile and requires only pip install -r requirements.txt. No database needed; all data persists in a single gradebook.json file.",
+        "Wrote a what-if solver that pins any pending item as a variable, holds every other pending item at the current predicted grade, and solves for the exact score needed to hit a target final grade.",
+        "Built atomic JSON persistence with temp-file-replace writes, plus a Flask REST layer that handles standalone items, sub-item groups, and auto-saves edits on a 500ms debounce.",
+        "Deployed via Gunicorn on Render. Comes with a Procfile and only needs pip install -r requirements.txt. No database; everything persists in a single gradebook.json file.",
       ],
       github: "https://github.com/Toros-25/GradeMaster",
       website: "https://grademaster-mqoa.onrender.com", // set to live URL to show a Website button, e.g. "https://grademaster.onrender.com"
@@ -237,10 +240,11 @@ const CONTENT = {
       name: "S&P 500 Market Crash Simulator",
       language: "Python",
       tech: ["Python", "Dash", "Plotly", "NetworkX", "NumPy"],
-      description: "Interactive financial contagion simulator modeling crash propagation across all 503 S&P 500 companies using a weighted graph with ~24,000 Pearson correlation edges derived from COVID-19 log-returns.",
+      description: "A 4-person team project that simulates how a crash propagates across the 503 S&P 500 companies on a weighted graph of ~24,000 Pearson correlation edges (r ≥ 0.7) built from COVID-19 period log-returns.",
       bullets: [
-        "Engineered a recursive contagion algorithm that attenuates crash impact across correlated neighbors, with real-time market cap loss estimates.",
-        "Built an interactive dashboard integrating yfinance, NetworkX, and NumPy. Led a 4-person team.",
+        "Led the team and built the weighted correlation graph — ~24,000 edges between 503 S&P 500 companies, keeping only pairs with r ≥ 0.7 over COVID-period log-returns.",
+        "Wrote the recursive contagion algorithm in Python. It attenuates a crash's impact as it spreads to correlated neighbors, so any user-defined crash scenario gives back real-time market cap loss estimates.",
+        "Built the dashboard end-to-end with Dash and Plotly. yfinance pulls historical prices, NetworkX handles graph layout, NumPy does the correlation math, and everything ships as a single deployable pipeline.",
       ],
       github: "https://github.com/Toros-25/Project-2",
       website: "",
@@ -250,11 +254,11 @@ const CONTENT = {
       name: "Nucleus Independent Living: Chronic Condition Analysis",
       language: "R",
       tech: ["R", "ggplot2", "dplyr"],
-      description: "22-page statistical analysis evaluating how clients with varying chronic conditions respond to Nucleus Independent Living services, analyzing over 5,000 client records.",
+      description: "22-page statistical analysis of how clients with different chronic conditions respond to Nucleus Independent Living services, drawn from over 5,000 client records.",
       bullets: [
-        "Led a 3-person team analyzing ~4,000 Nucleus client records across 6 chronic condition burden groups, quantifying 12-month pre/post changes in hospital days, healthcare costs, and unscheduled readmission rates in R",
-        "Performed data wrangling across 3 research questions, engineering new variables including chronic burden groupings, cost reduction metrics, and age categories across 4 groups, producing summary tables and visualizations using ggplot2",
-        "Found that clients with 5+ chronic conditions had a median 7-day reduction in hospital stays and respiratory condition clients saw the largest average cost reduction at ~$22,500, suggesting Nucleus services most benefit high-need clients",
+        "Led a 3-person team through ~4,000 Nucleus client records across 6 chronic condition burden groups, measuring 12-month pre/post changes in hospital days, healthcare costs, and unscheduled readmission rates in R.",
+        "Cleaned and reshaped the data across 3 research questions and built new variables for chronic burden groupings, cost reduction metrics, and age categories across 4 groups, with summary tables and ggplot2 visualizations.",
+        "Found that clients with 5+ chronic conditions had a median 7-day drop in hospital stays, and respiratory condition clients saw the largest average cost reduction at ~$22,500. Nucleus services seem to help high-need clients the most.",
       ],
       github: "",
       website: "",
@@ -532,11 +536,52 @@ function renderPublications() {
 // ================================================================
 function renderWork() {
   const grid = $('#work-grid');
+  const filters = $('#work-filters');
   grid.innerHTML = '';
-  CONTENT.work.forEach(w => {
+  if (filters) filters.innerHTML = '';
+
+  // Build filter buttons from CONTENT.workFilters. Filter labels must match
+  // the `type` field on work entries exactly.
+  if (filters) {
+    CONTENT.workFilters.forEach((tag, i) => {
+      filters.appendChild(el('button', {
+        class: 'filter-btn' + (i === 0 ? ' active' : ''),
+        type: 'button',
+        'data-tag': tag,
+        'aria-pressed': String(i === 0),
+      }, tag));
+    });
+  }
+
+  // Sort: type group order (from workFilters, skipping "All") → within a
+  // group, by `end` descending with "Present" treated as latest. Unknown
+  // types sort last; unparseable end dates sort to the bottom of their group.
+  // `end` should be "Mon YYYY" (e.g. "Jun 2025") or "Present" — other formats
+  // like "Q3 2025" or "Summer 2025" return NaN from Date.parse.
+  const typeOrder = CONTENT.workFilters.filter(t => t !== 'All');
+  const typeRank = t => {
+    const i = typeOrder.indexOf(t);
+    return i === -1 ? typeOrder.length : i;
+  };
+  const endTime = s => {
+    if (/present/i.test(s)) return Infinity;
+    const t = Date.parse(s);
+    return isNaN(t) ? 0 : t;
+  };
+  const sorted = CONTENT.work.slice().sort((a, b) => {
+    const ta = typeRank(a.type), tb = typeRank(b.type);
+    if (ta !== tb) return ta - tb;
+    return endTime(b.end) - endTime(a.end);
+  });
+
+  sorted.forEach(w => {
     const bullets = w.bullets.map(b => `<li>${escapeHtml(b)}</li>`).join('');
     const skills = w.skills.map(s => `<span class="skill-chip">${escapeHtml(s)}</span>`).join('');
-    const card = el('article', { class: 'card work-card', 'data-aos': 'fade-up' });
+    const card = el('article', {
+      class: 'card work-card',
+      'data-type': w.type || '',
+      'data-aos': 'fade-up',
+    });
     card.innerHTML = `
       <header class="work-header">
         <div class="work-company">${escapeHtml(w.company)}</div>
@@ -645,7 +690,7 @@ function renderSkills() {
   ].forEach(({ title, items }) => {
     if (!items || !items.length) return;
     const sub = el('div', { class: 'skill-subsection' });
-    sub.innerHTML = `<div class="skill-sub-title">// ${escapeHtml(title)}</div>`;
+    sub.innerHTML = `<div class="skill-sub-title">${escapeHtml(title)}</div>`;
     const grid = el('div', { class: 'hex-grid' });
     items.forEach(s => grid.appendChild(el('div', { class: 'hex-cell', text: s })));
     sub.appendChild(grid);
@@ -704,7 +749,7 @@ function renderAchievements() {
   }, {});
   Object.entries(groups).forEach(([cat, items]) => {
     const group = el('section', { class: 'ach-group' });
-    group.innerHTML = `<h3 class="ach-group-title">// ${escapeHtml(cat)}</h3>`;
+    group.innerHTML = `<h3 class="ach-group-title">${escapeHtml(cat)}</h3>`;
     const grid = el('div', { class: 'ach-grid' });
     items.forEach((a, i) => {
       const card = el('article', {
@@ -846,15 +891,15 @@ function initNav() {
 
 
 
-
-
 // ================================================================
-// initProjectFilters — show only projects whose tech tags include the
-// selected filter (or all when "All" is active).
+// initWorkFilters — show only work entries matching the selected
+// type (or all when "All" is active). Filter labels must match the
+// `type` field on each work entry exactly.
 // ================================================================
-function initProjectFilters() {
-  const filters = $('#project-filters');
-  if (!filters) return;
+function initWorkFilters() {
+  const filters = $('#work-filters');
+  const grid = $('#work-grid');
+  if (!filters || !grid) return;
   filters.addEventListener('click', e => {
     const btn = e.target.closest('.filter-btn');
     if (!btn) return;
@@ -864,7 +909,32 @@ function initProjectFilters() {
       b.setAttribute('aria-pressed', String(isActive));
     });
     const tag = btn.dataset.tag;
-    $$('.project-card').forEach(card => {
+    $$('.work-card', grid).forEach(card => {
+      const match = tag === 'All' || card.dataset.type === tag;
+      card.classList.toggle('hidden', !match);
+    });
+  });
+}
+
+
+// ================================================================
+// initProjectFilters — show only projects whose tech tags include the
+// selected filter (or all when "All" is active).
+// ================================================================
+function initProjectFilters() {
+  const filters = $('#project-filters');
+  const grid = $('#projects-grid');
+  if (!filters || !grid) return;
+  filters.addEventListener('click', e => {
+    const btn = e.target.closest('.filter-btn');
+    if (!btn) return;
+    $$('.filter-btn', filters).forEach(b => {
+      const isActive = b === btn;
+      b.classList.toggle('active', isActive);
+      b.setAttribute('aria-pressed', String(isActive));
+    });
+    const tag = btn.dataset.tag;
+    $$('.project-card', grid).forEach(card => {
       const match = tag === 'All' || card.dataset.language === tag;
       card.classList.toggle('hidden', !match);
     });
@@ -959,6 +1029,7 @@ function init() {
 
   initNav();
   initTyped();
+  initWorkFilters();
   initProjectFilters();
   initSkillFilters();
   initCopyCitation();
