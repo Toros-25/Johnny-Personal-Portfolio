@@ -200,16 +200,6 @@ p {
   color: var(--text-strong);
 }
 
-.nav-link--secondary {
-  font-size: 0.78rem;
-  color: var(--text-muted);
-  opacity: 0.72;
-}
-
-.nav-link--secondary:hover {
-  opacity: 1;
-}
-
 .nav-link.active {
   color: var(--accent);
 }
@@ -1338,9 +1328,8 @@ p {
 
 .ach-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  grid-template-columns: repeat(3, 1fr);
   gap: 1.25rem;
-  align-items: start;
 }
 
 .ach-card {

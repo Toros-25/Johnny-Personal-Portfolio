@@ -284,7 +284,7 @@ const CONTENT = {
     programming: {
       languages: ["Python", "R", "JavaScript", "HTML/CSS", "LaTeX"],
       frameworks: ["Dash", "Plotly", "Flask", "Vue", "React"],
-      devTools: ["PyCharm", "VS Code", "Visual Studio", "Git", "Render"],
+      devTools: ["PyCharm", "VS Code", "Visual Studio", "Git", "Render", "Microsoft Offices", "Github Pages"],
       libraries: ["NetworkX", "NumPy", "ggplot2", "dplyr"],
     },
 
@@ -436,7 +436,7 @@ function renderEducation() {
         <span class="edu-chevron" aria-hidden="true">▾</span>
       </button>
       <div id="${bodyId}" class="edu-body${isOpen ? ' open' : ''}">
-        <div class="edu-courses-title">// Relevant Courses</div>
+        <div class="edu-courses-title">Relevant Courses</div>
         <ul class="edu-courses">${courses}</ul>
       </div>
     `;
