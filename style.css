@@ -106,6 +106,27 @@ p {
   border-radius: 4px;
 }
 
+/* Skip-to-main link — visually hidden until focused by keyboard */
+.skip-link {
+  position: absolute;
+  top: -100%;
+  left: 1rem;
+  z-index: 9999;
+  padding: 0.6rem 1.25rem;
+  background: var(--accent);
+  color: #ffffff;
+  font-family: var(--font-mono);
+  font-size: 0.875rem;
+  font-weight: 600;
+  border-radius: var(--radius-sm);
+  text-decoration: none;
+  transition: top 0.15s;
+}
+
+.skip-link:focus {
+  top: 1rem;
+}
+
 /* ================================================================
    LAYOUT
    ================================================================ */
@@ -363,17 +384,48 @@ p {
   margin-bottom: 1rem;
 }
 
-.hero-typewriter {
-  font-family: var(--font-mono);
-  font-size: clamp(1rem, 2.2vw, 1.4rem);
-  color: var(--text-muted);
+.hero-orbit {
+  position: relative;
+  width: 100%;
+  /* 8rem = 128px gives ~10px clearance above/below the front phrase at max
+     scale 1.2× and ~22px line-height (cy=64, top edge=64-38-13=13px,
+     bottom edge=64+38+13=115px). Up from 7rem which was only ~5px headroom. */
+  height: 8rem;
   margin-bottom: 1.5rem;
-  min-height: 1.6em;
+  /* Clip orbit at the container edges so phrases don't bleed into adjacent
+     sections; the hero section's own overflow:hidden handles the sides. */
+  overflow: hidden;
 }
 
-.caret-prefix {
-  color: var(--accent);
-  margin-right: 0.5rem;
+.orbit-phrase {
+  position: absolute;
+  font-family: var(--font-mono);
+  font-size: clamp(1rem, 2.2vw, 1.4rem);
+  white-space: nowrap;
+  pointer-events: none;
+  user-select: none;
+  /* Hint compositor to promote each phrase to its own layer — the rAF loop
+     animates transform and opacity every frame, so this avoids per-frame
+     paint work on the main thread. */
+  will-change: transform, opacity;
+}
+
+/* prefers-reduced-motion: stack phrases vertically, no JS geometry needed. */
+.hero-orbit.orbit-static {
+  position: static;
+  height: auto;
+  overflow: visible;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+.hero-orbit.orbit-static .orbit-phrase {
+  position: static;
+  transform: none;
+  font-size: clamp(0.85rem, 1.8vw, 1.05rem);
+  will-change: auto; /* no animation — release the compositor layer */
 }
 
 .hero-tagline {
@@ -859,6 +911,12 @@ p {
 .pub-authors .me {
   font-weight: 700;
   color: var(--text-strong);
+}
+
+.pub-year {
+  font-family: var(--font-mono);
+  font-size: 0.88rem;
+  color: var(--text-muted);
 }
 
 .pub-title {
@@ -1514,6 +1572,13 @@ p {
     padding: 4.5rem 1.25rem;
   }
 
+  /* Shrink orbit font so long phrases don't clip at tablet width (~480–768px).
+     rx = viewport * 0.42, so at 600px rx=252px; "Bench-to-Codebase Researcher"
+     is ~230px at 0.9rem — fits with margin. */
+  .orbit-phrase {
+    font-size: clamp(0.8rem, 2vw, 1rem);
+  }
+
   .edu-toggle {
     flex-wrap: wrap;
     gap: 0.85rem;
@@ -1610,6 +1675,13 @@ p {
     justify-content: center;
   }
 
+  /* At 380px, rx=~160px; at 0.75rem font, longest phrase ("Bench-to-Codebase
+     Researcher") is ~190px — trim rx in JS isn't feasible from CSS, so we
+     cap font size small enough that every phrase fits within the 380px arc. */
+  .orbit-phrase {
+    font-size: 0.75rem;
+  }
+
   .hex-cell {
     width: 80px;
     height: 90px;
@@ -1625,6 +1697,9 @@ p {
 
 @media (prefers-reduced-motion: reduce) {
 
+  /* Broad reset — intentional. JS orbit uses orbit-static class instead of CSS
+     transitions, so this doesn't affect it. If adding CSS transitions to
+     .orbit-phrase in the future, override will-change and duration there explicitly. */
   *,
   *::before,
   *::after {

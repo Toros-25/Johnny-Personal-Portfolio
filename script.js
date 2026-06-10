@@ -12,8 +12,8 @@ const CONTENT = {
 
   hero: {
     name: "Jiayi (Johnny) Li",
-    tagline: "Engineering at the intersection of code and disease.",
-    typewriterPhrases: [
+    tagline: "Making disease legible, one model at a time",
+    orbitPhrases: [
       "Undergraduate Researcher",
       "Aspiring Software Engineer",
       "OHL Drafted Hockey Player",
@@ -27,7 +27,7 @@ const CONTENT = {
       github: "https://github.com/Toros-25",
       linkedin: "https://www.linkedin.com/in/johnny-li-ljy/",
       googleScholar: "",
-      email: "lijohnny269@gmail.com",
+      email: "lijohnny269@gmail.com", // shown in the contact section, not the hero icon row
     },
   },
 
@@ -369,7 +369,7 @@ function renderHero() {
     const cfg = ICON_PATHS[key];
     if (!cfg) return;
     const a = el('a', { href: safeUrl(val), 'aria-label': cfg.label, target: '_blank', rel: 'noopener noreferrer' });
-    a.innerHTML = `<svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path fill="currentColor" d="${cfg.path}"/></svg>`;
+    a.innerHTML = `<svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path fill="currentColor" d="${escapeHtml(cfg.path)}"/></svg>`;
     wrap.appendChild(a);
   });
 }
@@ -452,6 +452,7 @@ function renderEducation() {
         slot.innerHTML = '';
         slot.appendChild(img);
       };
+      img.onerror = () => { /* keep initials fallback — no-op prevents broken-image icon */ };
       img.src = e.logo;
     }
 
@@ -513,6 +514,8 @@ function renderPublications() {
   CONTENT.publications.forEach((p, i) => {
     const item = el('li', { class: 'publication', 'data-aos': 'fade-up' });
     // Bold any "Li, J." occurrences in the author string so Johnny stands out.
+    // Pattern must contain only HTML-safe chars — runs after escapeHtml, so any
+    // &/</> in the pattern would no longer match the escaped source text.
     const authors = escapeHtml(p.authors).replace(/(Li, J\.)/g, '<span class="me">$1</span>');
     const titleHtml = p.doi
       ? `<a href="${escapeHtml(safeUrl(p.doi))}" target="_blank" rel="noopener noreferrer">${escapeHtml(p.title)}</a>`
@@ -726,7 +729,7 @@ function renderSkills() {
   labPanel.appendChild(sopCard);
   content.appendChild(labPanel);
 
-  // Panel 2: Languages — animated progress bars (triggered by initSkillBars).
+  // Panel 2: Languages — animated progress bars (triggered by initSkillFilters).
   const langPanel = el('div', { class: 'skills-panel skill-panel-hidden', 'data-skill-panel': '2' });
   const langList = el('div', { class: 'lang-list' });
   CONTENT.skills.spoken.forEach(l => {
@@ -797,7 +800,10 @@ function renderAchievements() {
 function renderContact() {
   const email = CONTENT.hero.links.email;
   const btn = $('#contact-email');
-  btn.href = `mailto:${email}`;
+  // Build the mailto: href via setAttribute so special chars in the address
+  // cannot break out of the attribute value, even though safeUrl only blocks
+  // the javascript: scheme.
+  btn.setAttribute('href', `mailto:${escapeHtml(email)}`);
   $('#contact-email-text').textContent = email;
 
   // Social row mirrors the hero icon row, minus the email link (CTA already covers it).
@@ -808,7 +814,7 @@ function renderContact() {
     if (!val) return;
     const cfg = ICON_PATHS[key];
     const a = el('a', { href: safeUrl(val), 'aria-label': cfg.label, target: '_blank', rel: 'noopener noreferrer' });
-    a.innerHTML = `<svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path fill="currentColor" d="${cfg.path}"/></svg>`;
+    a.innerHTML = `<svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path fill="currentColor" d="${escapeHtml(cfg.path)}"/></svg>`;
     wrap.appendChild(a);
   });
 
@@ -816,20 +822,135 @@ function renderContact() {
 }
 
 
-// ================================================================
-// initTyped — typewriter effect for the hero phrases
-// ================================================================
-function initTyped() {
-  if (typeof Typed === 'undefined') return; // CDN failed; skip silently
-  // typeSpeed/backSpeed in ms per character; backDelay is the pause before
-  // backspacing once the phrase finishes typing.
-  new Typed('#typed', {
-    strings: CONTENT.hero.typewriterPhrases,
-    typeSpeed: 65,
-    backSpeed: 35,
-    backDelay: 1600,
-    loop: true,
+// initOrbit — steps hero phrases to the front one at a time, pausing briefly at each.
+function initOrbit() {
+  const container = $('#hero-orbit');
+  const heroSection = $('#hero');
+  if (!container || !heroSection) return;
+
+  const phrases = CONTENT.hero.orbitPhrases;
+  const count = phrases.length;
+  if (count === 0) return;
+
+  const TWO_PI = Math.PI * 2;
+  const STEP          = TWO_PI / count; // angle between adjacent front stops
+  const PAUSE_DURATION = 1500;          // ms to hold each phrase at the front
+  const MOVE_DURATION  = 800;           // ms to ease between stops
+  const RY = 38;
+
+  const BACK  = [120, 113, 108]; // --text-muted  #78716c
+  const FRONT = [153,  27,  27]; // --accent      #991b1b
+
+  const spans = phrases.map(text => {
+    const span = el('span', { class: 'orbit-phrase', text });
+    container.appendChild(span);
+    return span;
   });
+
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    container.classList.add('orbit-static');
+    spans.forEach(span => {
+      span.style.opacity = '0.7';
+      span.style.color = 'var(--text-muted)';
+    });
+    return;
+  }
+
+  let rx = Math.max(heroSection.offsetWidth * 0.42, 1);
+  let cx = container.offsetWidth / 2;
+  let cy = container.offsetHeight / 2;
+
+  const ro = new ResizeObserver(() => {
+    rx = Math.max(heroSection.offsetWidth * 0.42, 1);
+    cx = container.offsetWidth / 2;
+    cy = container.offsetHeight / 2;
+  });
+  ro.observe(heroSection);
+  ro.observe(container);
+
+  // Phrase 0 starts at the front (sin = 1 → angle = π/2).
+  let orbitAngle    = Math.PI / 2;
+  let moveStartAngle = orbitAngle;
+  let phase         = 'pausing'; // 'pausing' | 'moving'
+  let phaseElapsed  = 0;         // ms spent in the current phase
+  let lastTimestamp = null;
+  let rafId         = null;
+
+  // Smooth ease-in-out so the orbit decelerates into each stop and accelerates out.
+  function easeInOut(t) {
+    return t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
+  }
+
+  function draw() {
+    spans.forEach((span, i) => {
+      const angle = STEP * i + orbitAngle;
+      const x = cx + rx * Math.cos(angle);
+      const y = cy + RY * Math.sin(angle);
+      const t = (Math.sin(angle) + 1) / 2; // 0 = back, 1 = front
+
+      const r = Math.round(BACK[0] + (FRONT[0] - BACK[0]) * t);
+      const g = Math.round(BACK[1] + (FRONT[1] - BACK[1]) * t);
+      const b = Math.round(BACK[2] + (FRONT[2] - BACK[2]) * t);
+
+      span.style.left      = `${x}px`;
+      span.style.top       = `${y}px`;
+      span.style.transform = `translate(-50%, -50%) scale(${String(0.7 + 0.5 * t)})`;
+      span.style.opacity   = String(0.3 + 0.7 * t);
+      span.style.color     = `rgb(${r},${g},${b})`;
+      span.style.zIndex    = String(Math.round(t * 10));
+    });
+  }
+
+  function tick(timestamp) {
+    // Cap dt at 100ms so a long gap (e.g. returning from another tab) never
+    // causes a visual jump — the animation simply freezes during the gap.
+    const dt = lastTimestamp === null ? 0 : Math.min(timestamp - lastTimestamp, 100);
+    lastTimestamp = timestamp;
+    phaseElapsed += dt;
+
+    if (phase === 'pausing') {
+      if (phaseElapsed >= PAUSE_DURATION) {
+        phase = 'moving';
+        moveStartAngle = orbitAngle;
+        phaseElapsed -= PAUSE_DURATION; // carry excess into the move phase
+      }
+    }
+    // Separate if (not else-if) so a single tick can cross a phase boundary
+    // without skipping a stop if timing constants ever change.
+    if (phase === 'moving') {
+      const progress = Math.min(phaseElapsed / MOVE_DURATION, 1);
+      orbitAngle = moveStartAngle + STEP * easeInOut(progress);
+      if (phaseElapsed >= MOVE_DURATION) {
+        orbitAngle = moveStartAngle + STEP; // snap to exact stop
+        moveStartAngle = orbitAngle;
+        phase = 'pausing';
+        phaseElapsed -= MOVE_DURATION;
+      }
+    }
+
+    draw();
+    rafId = requestAnimationFrame(tick);
+  }
+
+  draw(); // position spans before first tick to eliminate the ~16ms left:0;top:0 flash
+  rafId = requestAnimationFrame(tick);
+
+  document.addEventListener('visibilitychange', () => {
+    if (document.hidden) {
+      if (rafId !== null) { cancelAnimationFrame(rafId); rafId = null; }
+      lastTimestamp = null; // dt = 0 on next tick so no jump when returning
+    } else if (rafId === null) {
+      // Guard against duplicate loops if two 'visible' events fire without
+      // an intervening 'hidden' (rapid tab switching edge case).
+      lastTimestamp = null;
+      rafId = requestAnimationFrame(tick);
+    }
+  });
+
+  initOrbit._stop = () => {
+    if (rafId !== null) { cancelAnimationFrame(rafId); rafId = null; }
+    ro.disconnect();
+  };
 }
 
 
@@ -872,6 +993,8 @@ function initNav() {
     }
   });
 
+  // initNav assumes single invocation per page load — these document listeners
+  // are page-lifetime and not cleaned up between calls.
   // Close on Escape key; return focus to the burger button.
   document.addEventListener('keydown', e => {
     if (e.key === 'Escape' && linksWrap.classList.contains('open')) {
@@ -956,7 +1079,7 @@ function initCopyCitation() {
   document.addEventListener('click', e => {
     const btn = e.target.closest('button.copy-cite');
     if (!btn) return;
-    const idx = parseInt(btn.dataset.idx, 10);
+    const idx = Number(btn.dataset.idx);
     const p = CONTENT.publications[idx];
     if (!p) return;
     const volumePart = p.volume ? `, ${p.volume}` : '';
@@ -1047,7 +1170,7 @@ function init() {
   renderContact();
 
   initNav();
-  initTyped();
+  initOrbit();
   initWorkFilters();
   initProjectFilters();
   initSkillFilters();
