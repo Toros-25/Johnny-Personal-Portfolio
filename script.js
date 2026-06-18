@@ -32,7 +32,7 @@ const CONTENT = {
   },
 
   about: {
-    bio: "I'm an undergraduate at Northwestern University studying Biomedical Engineering and Artificial Intelligence. My research has covered kidney genetics, radiation dosimetry, Parkinson's disease protein aggregation, and CMV epidemiology. I publish peer-reviewed work, build AI tools, and play competitive hockey. I like problems that don't have clean answers yet, whether that's how a protein misfolds or where a model breaks down.",
+    bio: "I'm an undergraduate at the University of Toronto studying Computer Science and Quantitative Biology, with a minor in Statistics. My research has covered kidney genetics, radiation dosimetry, Parkinson's disease protein aggregation, and CMV epidemiology. I publish peer-reviewed work, build AI tools, and play competitive hockey. I like problems that don't have clean answers yet, whether that's how a protein misfolds or where a model breaks down.",
     hockeyCallout: "Drafted in the OHL Priority Selection | Played in the 14th National China Winter Games for Tianjin",
   },
 
@@ -40,6 +40,7 @@ const CONTENT = {
   // Drop a logo image at assets/<filename> and set the `logo` field;
   // if the file is missing, the card falls back to the school's initials.
   education: [
+    /*
     {
       university: "Northwestern University",
       logo: "assets/northwestern_logo.png",
@@ -49,10 +50,11 @@ const CONTENT = {
       end: "Jun 2029",
       gpa: "4.0 / 4.0",
       courses: [
-        "COMP_SCI 211 — Fundamentals of Computer Programming II",
-        "COMP_SCI 214 — Data Structures & Algorithms",
+        "COMP_SCI 111 — Fundamentals of Computer Programming I",
+        "COMP_SCI 208 — Data Structures & Algorithms",
       ],
     },
+    */
     {
       university: "University of Toronto",
       logo: "assets/uoft_logo.png",
@@ -833,13 +835,13 @@ function initOrbit() {
   if (count === 0) return;
 
   const TWO_PI = Math.PI * 2;
-  const STEP          = TWO_PI / count; // angle between adjacent front stops
+  const STEP = TWO_PI / count; // angle between adjacent front stops
   const PAUSE_DURATION = 1500;          // ms to hold each phrase at the front
-  const MOVE_DURATION  = 800;           // ms to ease between stops
+  const MOVE_DURATION = 800;           // ms to ease between stops
   const RY = 38;
 
-  const BACK  = [120, 113, 108]; // --text-muted  #78716c
-  const FRONT = [153,  27,  27]; // --accent      #991b1b
+  const BACK = [120, 113, 108]; // --text-muted  #78716c
+  const FRONT = [153, 27, 27]; // --accent      #991b1b
 
   const spans = phrases.map(text => {
     const span = el('span', { class: 'orbit-phrase', text });
@@ -869,12 +871,12 @@ function initOrbit() {
   ro.observe(container);
 
   // Phrase 0 starts at the front (sin = 1 → angle = π/2).
-  let orbitAngle    = Math.PI / 2;
+  let orbitAngle = Math.PI / 2;
   let moveStartAngle = orbitAngle;
-  let phase         = 'pausing'; // 'pausing' | 'moving'
-  let phaseElapsed  = 0;         // ms spent in the current phase
+  let phase = 'pausing'; // 'pausing' | 'moving'
+  let phaseElapsed = 0;         // ms spent in the current phase
   let lastTimestamp = null;
-  let rafId         = null;
+  let rafId = null;
 
   // Smooth ease-in-out so the orbit decelerates into each stop and accelerates out.
   function easeInOut(t) {
@@ -892,12 +894,12 @@ function initOrbit() {
       const g = Math.round(BACK[1] + (FRONT[1] - BACK[1]) * t);
       const b = Math.round(BACK[2] + (FRONT[2] - BACK[2]) * t);
 
-      span.style.left      = `${x}px`;
-      span.style.top       = `${y}px`;
+      span.style.left = `${x}px`;
+      span.style.top = `${y}px`;
       span.style.transform = `translate(-50%, -50%) scale(${String(0.7 + 0.5 * t)})`;
-      span.style.opacity   = String(0.3 + 0.7 * t);
-      span.style.color     = `rgb(${r},${g},${b})`;
-      span.style.zIndex    = String(Math.round(t * 10));
+      span.style.opacity = String(0.3 + 0.7 * t);
+      span.style.color = `rgb(${r},${g},${b})`;
+      span.style.zIndex = String(Math.round(t * 10));
     });
   }
 
