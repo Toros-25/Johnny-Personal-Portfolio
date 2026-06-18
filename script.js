@@ -62,7 +62,7 @@ const CONTENT = {
       degree: "HBSc. Major in Computer Science & Quantitative Biology, Minor in Statistics",
       start: "Sep 2025",
       end: "Aug 2026",
-      gpa: "4.0 / 4.0",
+      gpa: "3.7 / 4.0",
       courses: [
         "CSC110 — Foundations of Computer Science I",
         "CSC111 — Foundations of Computer Science II",
