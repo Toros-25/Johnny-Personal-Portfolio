@@ -32,7 +32,7 @@ const CONTENT = {
   },
 
   about: {
-    bio: "I'm an undergraduate at the University of Toronto studying Computer Science and Quantitative Biology, with a minor in Statistics. My research has covered kidney genetics, radiation dosimetry, Parkinson's disease protein aggregation, and CMV epidemiology. I publish peer-reviewed work, build AI tools, and play competitive hockey. I like problems that don't have clean answers yet, whether that's how a protein misfolds or where a model breaks down.",
+    bio: "I'm an undergraduate studying Computer Science and Quantitative Biology, with a minor in Statistics. My research has covered kidney genetics, radiation dosimetry, Parkinson's disease protein aggregation, and CMV epidemiology. I publish peer-reviewed work, build AI tools, and play competitive hockey. I like problems that don't have clean answers yet, whether that's how a protein misfolds or where a model breaks down.",
     hockeyCallout: "Drafted in the OHL Priority Selection | Played in the 14th National China Winter Games for Tianjin",
   },
 
@@ -40,7 +40,6 @@ const CONTENT = {
   // Drop a logo image at assets/<filename> and set the `logo` field;
   // if the file is missing, the card falls back to the school's initials.
   education: [
-    /*
     {
       university: "Northwestern University",
       logo: "assets/northwestern_logo.png",
@@ -54,7 +53,6 @@ const CONTENT = {
         "COMP_SCI 208 — Data Structures & Algorithms",
       ],
     },
-    */
     {
       university: "University of Toronto",
       logo: "assets/uoft_logo.png",

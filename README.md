@@ -1,6 +1,6 @@
 # Jiayi (Johnny) Li — Personal Portfolio
 
-Personal portfolio website for Jiayi (Johnny) Li, an undergraduate researcher at the University of Toronto studying Computer Science and Quantitative Biology. The site is meant to work as a living resume, so researchers, hiring managers, and collaborators can find my academic and professional background in one place.
+Personal portfolio website for Jiayi (Johnny) Li, an undergraduate researcher studying Computer Science and Quantitative Biology. The site is meant to work as a living resume, so researchers, hiring managers, and collaborators can find my academic and professional background in one place.
 
 ## What's Here
 
