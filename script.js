@@ -32,7 +32,7 @@ const CONTENT = {
   },
 
   about: {
-    bio: "I'm an undergraduate studying Computer Science and Quantitative Biology, with a minor in Statistics. My research has covered kidney genetics, radiation dosimetry, Parkinson's disease protein aggregation, and CMV epidemiology. I publish peer-reviewed work, build AI tools, and play competitive hockey. I like problems that don't have clean answers yet, whether that's how a protein misfolds or where a model breaks down.",
+    bio: "I'm an undergraduate studying Biomedical Engineering and Computer Science, with a minor in Data Science. My research has covered kidney genetics, radiation dosimetry, Parkinson's disease protein aggregation, and CMV epidemiology. I publish peer-reviewed work, build AI tools, and play competitive hockey. I like problems that don't have clean answers yet, whether that's how a protein misfolds or where a model breaks down.",
     hockeyCallout: "Drafted in the OHL Priority Selection | Played in the 14th National China Winter Games for Tianjin",
   },
 
@@ -60,7 +60,7 @@ const CONTENT = {
       degree: "HBSc. Major in Computer Science & Quantitative Biology, Minor in Statistics",
       start: "Sep 2025",
       end: "Aug 2026",
-      gpa: "3.7 / 4.0",
+      gpa: "3.8 / 4.0",
       courses: [
         "CSC110 — Foundations of Computer Science I",
         "CSC111 — Foundations of Computer Science II",
