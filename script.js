@@ -277,6 +277,7 @@ const CONTENT = {
   // Omit the field entirely if there is no attachment.
   achievements: [
     { category: "Research", name: "2026 AAAS Annual Meeting E-Poster Presentation", desc: "Selected for poster presentation on Parkinson's disease protein aggregation research conducted at Brigham & Women's Hospital under Dr. Ulf Dettmer (Harvard Medical School)", year: 2026, attachment: "assets/Eposter.pdf" },
+    { category: "Research", name: "IMS SURP Poster Presentation", desc: "Presented Col4a3 KO vs WT proteomics analysis and Python visualization pipelines at the University of Toronto Institute of Medical Science Summer Undergraduate Research Program (SURP) Research Day as a funded SURP fellow", year: 2026, attachment: "assets/barua_lab_poster.pdf" },
     { category: "Research", name: "CCIR Student Symposium Presentation", desc: "Delivered oral talk on α-synuclein disaggregation research to University of Cambridge faculty and Nobel Laureate Thomas R. Cech (Nobel Prize in Chemistry, 1989)", year: 2025, attachment: "assets/ccir_symposium_pres.pdf" },
     { category: "Science", name: "Canadian Chemistry Olympiad Special Merit Award", desc: "Ranked 58th nationally out of ~700 contestants across Canada in consecutive years (2024, 2025)", year: "2024, 2025" },
     { category: "Hockey", name: "OHL Priority Selection — Top 300", desc: "Drafted top 300 of 11,000 players to the Ontario Hockey League (OHL), selected by the Niagara IceDogs", year: 2023, attachment: "https://www.eliteprospects.com/player/905968/johnny-li" },
