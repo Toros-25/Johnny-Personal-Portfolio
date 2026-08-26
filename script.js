@@ -15,10 +15,9 @@ const CONTENT = {
     tagline: "Making disease legible, one model at a time",
     orbitPhrases: [
       "Undergraduate Researcher",
-      "Aspiring Software Engineer",
+      "Aspiring Software & Machine Learning/AI Engineer",
       "OHL Drafted Hockey Player",
       "Published Author",
-      "Bench-to-Codebase Researcher",
 
     ],
     profileImage: "assets/profile.jpg", // set to "" to hide
@@ -44,13 +43,20 @@ const CONTENT = {
       university: "Northwestern University",
       logo: "assets/northwestern_logo.png",
       location: "Evanston, IL",
-      degree: "BS. Major in Biomedical Engineering & Artificial Intelligence, Minor in Data Science",
+      degree: "BS. Major in Computer Science and Statistics, Minor in Data Science",
       start: "Sep 2026",
       end: "Jun 2029",
       gpa: "4.0 / 4.0",
       courses: [
         "COMP_SCI 111 — Fundamentals of Computer Programming I",
-        "COMP_SCI 208 — Data Structures & Algorithms",
+        "COMP_SCI 150 — Fundamentals of Programming and Computational Problem Solving",
+        "COMP_SCI 208 — Data Structures and Algorithms",
+        "COMP_SCI 211 — Programming in Systems-Level Languages",
+        "COMP_SCI 330 — Human Computer Interaction",
+        "MATH 220 — Single-Variable Differential Calculus",
+        "MATH 226 — Sequences and Series",
+        "MATH 230 — Multivariable Differential Calculus",
+        "STAT 202 — Introduction to Statistics and Data Science",
       ],
     },
     {
@@ -85,10 +91,10 @@ const CONTENT = {
       end: "Present",
       color: "#f87171",
       bullets: [
-        "Conducting research in radiation dosimetry and QA for radiotherapy, targeting the ~1% precision required for absolute reference dosimetry in clinical dose measurements",
-        "Designed and tested calorimetry-based detectors across multiple irradiation conditions, identifying sources of measurement error to reduce overall uncertainty",
-        "Developed a Python tool (NumPy, pyvisa) that automates calorimeter dose analysis across irradiation runs, reducing per-dataset processing time from ~30 minutes to under a minute",
-        "Implemented a multithreaded acquisition script that samples up to 4 RTD probes over GPIB at sub-second intervals and converts resistance to temperature at milli-Kelvin resolution, enabling real-time drift monitoring during QA sessions",
+        "Conducting research in radiation dosimetry and calorimetry-based QA for radiotherapy, targeting the ~1% precision required for absolute reference dosimetry in clinical dose measurements",
+        "Built a Selenium-based browser automation script in Python to programmatically drive the Linax medical physics web platform, automating SIMAC2 beam simulation runs by handling login, reactive DOM input dispatch (firing JS input, change, and blur events), and CSV result downloading — eliminating manual data entry for batch parameter sweeps",
+        "Developed a Python program using NumPy and PyVisa that automates calorimeter dose analysis by fitting linear regressions to pre/post-irradiation voltage drifts and batch-processing multiple irradiation runs, cutting per-dataset analysis from ~30 minutes to under a minute",
+        "Built a multithreaded RTD acquisition script using PyVisa/SCPI over GPIB that samples up to 6 probes at sub-second intervals, applying the Callendar-Van Dusen equation with per-probe calibration constants to convert 4-wire resistance into temperature with real-time logging for drift monitoring during QA sessions",
       ],
     },
     {
@@ -101,10 +107,10 @@ const CONTENT = {
       end: "Present",
       color: "#dc2626",
       bullets: [
-        "Reanalyzed podocyte mass spectrometry data to confirm P3H2-mediated type IV collagen modifications, cross-validating results against 2 prior analyses to assess proteomic reproducibility.",
-        "Performed undifferentiated-to-differentiated podocyte cell culture and mass spec workflows, including Western blots to validate Col4a3 antibody specificity on podocyte protein extracts — a key reagent for the lab's basement membrane integrity research.",
-        "Developed the Barua Lab's first lab website (HTML, CSS, JavaScript, Vue.js) to publicly present the lab's research, open datasets, and open-source software.",
-        "Funded as an IMS Summer Undergraduate Research Program (SURP) fellow through the University of Toronto's Temerty Faculty of Medicine.",
+        "Independently reanalyzed Col4a3 KO vs WT proteomics data across cell line and male mouse tissue using pandas and NumPy, cross-referencing 3,414 shared proteins against a 23-gene fibrosis panel",
+        "Performed Western blot and podocyte cell culture to validate Col4a3 antibody specificity",
+        "Built Python visualization pipelines using matplotlib, pandas, and NumPy generating volcano plots with automated radial label placement and collision detection, pathway enrichment bubble charts, GO term dot plots, and Col4a3 protein domain architecture maps across 1,669 amino acids",
+        "Selected as a funded IMS SURP fellow through the University of Toronto's Institute of Medical Science; presented research findings via poster at SURP Research Day.",
       ],
     },
 
