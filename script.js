@@ -31,7 +31,7 @@ const CONTENT = {
   },
 
   about: {
-    bio: "I'm an undergraduate studying Biomedical Engineering and Computer Science, with a minor in Data Science. My research has covered kidney genetics, radiation dosimetry, Parkinson's disease protein aggregation, and CMV epidemiology. I publish peer-reviewed work, build AI tools, and play competitive hockey. I like problems that don't have clean answers yet, whether that's how a protein misfolds or where a model breaks down.",
+    bio: "I'm an undergraduate studying Computer Science and Statistics at Northwestern University, with a minor in Data Science. I build data pipelines, automation tools, and statistical models — and I've applied them across research in radiation dosimetry, proteomics, and epidemiology. I publish peer-reviewed work, contribute to full-stack projects, and play competitive hockey. I'm drawn to problems where the engineering and the math are both hard.",
     hockeyCallout: "Drafted in the OHL Priority Selection | Played in the 14th National China Winter Games for Tianjin",
   },
 
