@@ -15,7 +15,7 @@ const CONTENT = {
     tagline: "Making disease legible, one model at a time",
     orbitPhrases: [
       "Undergraduate Researcher",
-      "Aspiring Software & Machine Learning/AI Engineer",
+      "Aspiring Machine Learning Engineer",
       "OHL Drafted Hockey Player",
       "Published Author",
 
