@@ -229,6 +229,20 @@ const CONTENT = {
 
   projects: [
     {
+      name: "Morning Brief Bot",
+      language: "Python",
+      tech: ["Python", "GitHub Actions", "Jinja2", "Gmail SMTP", "OAuth2", "Open-Meteo API", "Google Calendar API"],
+      description: "Fault-tolerant daily digest pipeline integrating 4 APIs and 9 news feeds, deployed as a serverless GitHub Actions cron job that renders and delivers a personalized HTML email every morning.",
+      bullets: [
+        "Built per-source exception isolation across Open-Meteo, Google Calendar (OAuth2), and 9 RSS/Google News feeds so one failed API never breaks the digest.",
+        "Wrote a regex-based keyword filter with word-boundary matching across 20+ terms to extract relevant articles from general news feeds, with URL deduplication across overlapping queries.",
+        "Deployed serverless on GitHub Actions with encrypted repo secrets; digest is rendered via Jinja2 and delivered over Gmail SMTP.",
+      ],
+      github: "https://github.com/Toros-25/my-brief",
+      website: "",
+      pdf: "",
+    },
+    {
       name: "GradeMaster",
       language: "Python",
       tech: ["Python", "Flask", "Jinja2", "Javascript", "HTML/CSS", "JSON"],
@@ -291,7 +305,7 @@ const CONTENT = {
     programming: {
       languages: ["Python", "R", "JavaScript", "HTML/CSS", "LaTeX"],
       frameworks: ["Dash", "Plotly", "Flask", "Vue", "React"],
-      devTools: ["PyCharm", "VS Code", "Visual Studio", "Git", "Render", "Microsoft Offices", "Github Pages"],
+      devTools: ["PyCharm", "VS Code", "Visual Studio", "Git", "Render", "Microsoft Offices", "Github Pages", "GitHub Actions"],
       libraries: ["NetworkX", "NumPy", "ggplot2", "dplyr"],
     },
 
