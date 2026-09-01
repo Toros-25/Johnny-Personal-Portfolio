@@ -182,6 +182,20 @@ const CONTENT = {
 
   work: [
     {
+      company: "Lendo Capital",
+      role: "Quantitative Analyst Intern",
+      start: "Aug 2026",
+      end: "Present",
+      location: "New York City, USA",
+      type: "Internship",
+      bullets: [
+        "Built and debugged a reproducible Python data pipeline (pandas, yfinance) ingesting and cleaning 5 years of OHLCV data across 51 equities, resolving data integrity issues (phantom pre-IPO rows, split-adjustment errors) and documenting survivorship-bias and outlier-detection logic.",
+        "Computed and validated simple and log return series across the universe, confirming compounding identities to floating-point precision and characterizing fat-tailed, non-normal return distributions (skew/kurtosis) across 5 representative stocks.",
+        "Constructed equal-weight and value-weight 50-stock portfolios with monthly rebalancing and rolling volatility diagnostics; equal-weight portfolio delivered a 1.38 Sharpe ratio and 192.7% cumulative return vs. SPY's 0.92 Sharpe and 106.0% over the same 5-year window.",
+      ],
+      skills: ["Python", "pandas", "yfinance", "Data Pipelines", "Quantitative Finance", "Portfolio Analysis"],
+    },
+    {
       company: "My Learning Space AI (MYLS)",
       role: "AI Product Manager Intern",
       start: "Jun 2025",
