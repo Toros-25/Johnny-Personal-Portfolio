@@ -21,7 +21,8 @@ const CONTENT = {
 
     ],
     profileImage: "assets/profile.jpg", // set to "" to hide
-    resumePdf: "assets/resume.pdf",
+    resumePdf: "assets/Resume%20Johnny%20Li%20.pdf",
+    cvPdf: "assets/CV%20Johnny%20Li%20.pdf",
     links: {
       github: "https://github.com/Toros-25",
       linkedin: "https://www.linkedin.com/in/johnny-li-ljy/",
@@ -394,6 +395,7 @@ function renderHero() {
   $('#hero-name').textContent = h.name;
   $('#hero-tagline').textContent = h.tagline;
   $('#hero-resume').href = safeUrl(h.resumePdf);
+  $('#hero-cv').href = safeUrl(h.cvPdf);
 
   // Social icon row — only renders links that have a non-empty value.
   const wrap = $('#hero-links');
